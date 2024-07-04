@@ -3,7 +3,7 @@ const app = express()
 const port = 4000
 
 app.use('/',(req,res)=>{
-    res.semd("Hola Mundo mascotas")
+    res.send("Hola Mundo mascotas")
 })
 
 app.listen(port,()=>{
