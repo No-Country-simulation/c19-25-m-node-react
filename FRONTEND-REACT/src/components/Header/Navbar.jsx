@@ -19,7 +19,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse text-start ms-2 mt-2 p-0 text-white row" id="navbarNav">
+          <div className="collapse navbar-collapse text-start text-lg-center ms-2 mt-2 p-0 text-white row" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item col">
                 <Link
