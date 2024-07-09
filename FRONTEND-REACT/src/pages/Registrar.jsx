@@ -67,8 +67,8 @@ export default function Registrar() {
     };
 
     return (
-        <form ref={formRegister} onSubmit={handleSubmit} className="container-fluid p-0 mb-3 needs-validation mt-5 border rounded px-2" noValidate>
-            <div className="container-fluid py-3 px-2">
+        <form ref={formRegister} onSubmit={handleSubmit} className="container-xxl p-0 mb-3 needs-validation mt-5 border rounded" noValidate>
+            <div className="container-fluid py-3 px-3">
                 <div className="row g-4">
                     <div className="col-12">
                         <label htmlFor="fullName" className="form-label">Nombre Completo</label>
@@ -198,7 +198,7 @@ export default function Registrar() {
                     </div>
                 </div>
             </div>
-            <div className="container-fluid bg-body-secondary py-3 px-2">
+            <div className="container-fluid bg-body-secondary py-3 px-2 m-0">
                 <div className="d-grid gap-1 d-md-flex justify-content-md-end">
                     <button className="btn btn-success p-2" type="submit">Registrarme</button>
                 </div>
