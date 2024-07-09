@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+      <nav className="navbar fixed-top navbar-expand-lg d-flex justify-content-between" id="navbarPrincipal">
+        <div className="container-fluid ">
           <button
             className="navbar-toggler"
             type="button"
@@ -13,47 +15,69 @@ export default function Navbar() {
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            id="togglerButtonNavbar"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse text-start ms-3" id="navbarNav">
+          <div className="collapse navbar-collapse text-start ms-2 mt-2 p-0 text-white row" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  Home
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+                  aria-current="page"
+                  to="/"
+                >
+                  <i class="fa-solid fa-house"></i>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/anuncios">
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/anuncios" ? "active" : ""}`}
+                  to="/anuncios"
+                >
                   Anuncios
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/perfil">
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/perfil" ? "active" : ""}`}
+                  to="/perfil"
+                >
                   Perfil
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}
+                  to="/login"
+                >
                   Login
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`}
+                  to="/dashboard"
+                >
                   Dashboard
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/registrar">
+              <li className="nav-item col">
+                <Link
+                  className={`nav-link ${location.pathname === "/registrar" ? "active" : ""}`}
+                  to="/registrar"
+                >
                   Registro
                 </Link>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-
+            {/* <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> 
+            
+            EN PRINCIPIO LO DEJO QUITADO PORQUE NO HEMOS DICHO DE INCLUIRL, ES LA BARRA DE BUSCADOR.
+            */}
           </div>
         </div>
       </nav>
