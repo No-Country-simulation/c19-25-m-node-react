@@ -30,7 +30,7 @@ export default function Login() {
     };
 
     return (
-        <form ref={formRef} onSubmit={handleSubmit} className="container-fluid p-0 mb-3 needs-validation" noValidate>
+        <form ref={formRef} onSubmit={handleSubmit} className="container-fluid p-0 mb-3 needs-validation border rounded" noValidate>
             <div className="container-fluid py-3 px-2">
                 <div className="row g-4">
                     <div className="col-12 col-md-6">
@@ -38,7 +38,7 @@ export default function Login() {
                         <input 
                             type="email" 
                             id="email" 
-                            placeholder="example@example.com" 
+                            placeholder="ejemplo@ejemplo.com" 
                             className="form-control" 
                             value={formData.email} 
                             onChange={handleChange} 
@@ -72,10 +72,10 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <div className="container-fluid bg-body-secondary py-3 px-2">
+            <div className="container-fluid bg-body-secondary py-2 px-2">
                 <div className="d-grid gap-1 d-md-flex justify-content-md-end">
-                    <button className="btn btn-secondary" type="button">Cancelar</button>
-                    <button className="btn btn-primary" type="submit">Ingresar</button>
+                    <button className="btn btn-danger" type="button">Cancelar</button>
+                    <button className="btn btn-success" type="submit">Ingresar</button>
                 </div>
             </div>
         </form>
