@@ -27,6 +27,7 @@ function App() {
           <Route path='/anuncios' element={<Anuncios />} />
         </Routes>
       </div>
+
     </>
   )
 }

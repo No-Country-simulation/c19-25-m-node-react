@@ -5,7 +5,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg d-flex justify-content-between" id="navbarPrincipal">
+      <nav className="navbar fixed-top navbar-expand-lg d-flex justify-content-between py-1" id="navbarPrincipal">
         <div className="container-fluid ">
           <button
             className="navbar-toggler"
