@@ -18,16 +18,6 @@ export default function SearchComponent () {
   const searcher = (e) => {
       setSearch(e.target.value)   
   }
-   //metodo de filtrado 1 
-   /*  let results = []
-   if(!search)
-   {
-       results = users
-   }else{
-        results = users.filter( (dato) =>
-        dato.name.toLowerCase().includes(search.toLocaleLowerCase())
-    )
-   } */
 
    //metodo de filtrado 2   
    const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
@@ -35,6 +25,8 @@ export default function SearchComponent () {
    useEffect( ()=> {
     showData()
   }, [])
+
+  // Vamos a hacer un filtrado por localidad primero y podemos hacer un harcodeado.
   
   //renderizamos la vista
   return (
