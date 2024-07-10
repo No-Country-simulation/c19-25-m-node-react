@@ -30,54 +30,55 @@ export default function Login() {
     };
 
     return (
-        <form ref={formRef} onSubmit={handleSubmit} className="container-fluid p-0 mb-3 needs-validation border rounded" noValidate>
-            <div className="container-fluid py-3 px-2">
-                <div className="row g-4">
-                    <div className="col-12 col-md-6">
-                        <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            placeholder="ejemplo@ejemplo.com" 
-                            className="form-control" 
-                            value={formData.email} 
-                            onChange={handleChange} 
-                            required 
-                        />
-                        <div className="valid-feedback">
-                            ¡Se ve bien!
+        <div id="containerLogin" className="d-flex justify-content-center">
+            <form ref={formRef} onSubmit={handleSubmit} className="w-50 p-0 mb-3 needs-validation border rounded text-start" noValidate>
+                <div className="container-fluid py-3 px-2">
+                    <div className="row g-4">
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="email" className="form-label ms-2">Correo Electrónico</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="ejemplo@ejemplo.com"
+                                className="form-control"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            <div className="valid-feedback">
+                                ¡Se ve bien!
+                            </div>
+                            <div className="invalid-feedback">
+                                Por favor, ingrese su correo electrónico.
+                            </div>
                         </div>
-                        <div className="invalid-feedback">
-                            Por favor, ingrese su correo electrónico.
-                        </div>
-                    </div>
 
-                    <div className="col-12 col-md-6">
-                        <label htmlFor="password" className="form-label">Contraseña</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            placeholder="********" 
-                            className="form-control" 
-                            value={formData.password} 
-                            onChange={handleChange} 
-                            required 
-                        />
-                        <div className="valid-feedback">
-                            ¡Se ve bien!
-                        </div>
-                        <div className="invalid-feedback">
-                            Por favor, ingrese su contraseña.
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="password" className="form-label ms-2">Contraseña</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="********"
+                                className="form-control"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                            <div className="valid-feedback">
+                                ¡Se ve bien!
+                            </div>
+                            <div className="invalid-feedback">
+                                Por favor, ingrese su contraseña.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="container-fluid bg-body-secondary py-2 px-2">
-                <div className="d-grid gap-1 d-md-flex justify-content-md-end">
-                    <button className="btn btn-danger" type="button">Cancelar</button>
-                    <button className="btn btn-success" type="submit">Ingresar</button>
+                <div className="container-fluid bg-body-secondary py-2 px-2">
+                    <div className="d-grid gap-1 d-md-flex justify-content-md-end">
+                        <button className="btn btn-success" type="submit">Ingresar</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
