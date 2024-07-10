@@ -56,10 +56,10 @@ export default function Navbar() {
               </li>
               <li className="nav-item col">
                 <Link
-                  className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`}
-                  to="/dashboard"
+                  className={`nav-link ${location.pathname === "/buscador" ? "active" : ""}`}
+                  to="/buscador"
                 >
-                  Dashboard
+                  Buscador
                 </Link>
               </li>
               <li className="nav-item col">
