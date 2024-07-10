@@ -1,7 +1,7 @@
 #root {
   width: 100%;
-  margin: 2rem;
-  padding: 2rem;
+  margin: 1rem 0;
+  padding: 2rem 0;
 }
 
 #containerLogin {
@@ -64,4 +64,8 @@
 
 #togglerButtonNavbar {
   background-color: rgb(246, 231, 216);
+}
+
+.marginBottomHeader {
+  /* margin-bottom: 2rem; */
 }
