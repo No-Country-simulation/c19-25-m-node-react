@@ -50,7 +50,7 @@ export default function Home() {
             onClick={toggleReservations}> Próximas reservas</button>
           <button type="button" className="btn btn-outline-secondary"> Ver más</button>
         </div>
-
+        
         {showReservations && (
           <div className="container mt-4">
             <h2>Próximas reservas:</h2>
