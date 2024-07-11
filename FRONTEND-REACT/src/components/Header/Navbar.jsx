@@ -5,10 +5,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar mt-0 navbar-expand-lg d-flex justify-content-between py-1" id="navbarPrincipal">
-        <div className="container-fluid ">
+      <nav className="navbar navbar-dark bg-warning navbar-expand-lg py-1" id="navbarPrincipal" data-bs-theme="dark">
+        <div className="container-fluid d-flex justify-content-between">
           <button
-            className="navbar-toggler"
+            className="navbar-toggler text-body-white"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -19,9 +19,12 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse text-start text-lg-center ms-2 mt-2 p-0 text-white row" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item col">
+          <div className="collapse navbar-collapse ms-2">
+            <span className="fs-3"><strong>Yo lo cuido</strong></span>
+          </div>
+          <div className="collapse navbar-collapse text-lg-center ms-2 mt-2 p-0 row" id="navbarNav">
+            <ul className="navbar-nav d-flex justify-content-end">
+              <li className="nav-item">
                 <Link
                   className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
                   aria-current="page"
@@ -30,7 +33,7 @@ export default function Navbar() {
                   <i className="fa-solid fa-house"></i>
                 </Link>
               </li>
-              <li className="nav-item col">
+              <li className="nav-item">
                 <Link
                   className={`nav-link ${location.pathname === "/anuncios" ? "active" : ""}`}
                   to="/anuncios"
@@ -38,7 +41,7 @@ export default function Navbar() {
                   Anuncios
                 </Link>
               </li>
-              <li className="nav-item col">
+              <li className="nav-item">
                 <Link
                   className={`nav-link ${location.pathname === "/perfil" ? "active" : ""}`}
                   to="/perfil"
@@ -46,8 +49,8 @@ export default function Navbar() {
                   Perfil
                 </Link>
               </li>
-              
-              <li className="nav-item col">
+
+              <li className="nav-item">
                 <Link
                   className={`nav-link ${location.pathname === "/buscador" ? "active" : ""}`}
                   to="/buscador"
@@ -55,17 +58,17 @@ export default function Navbar() {
                   Buscador
                 </Link>
               </li>
-              <li className="nav-item col bg-white rounded-pill">
+              <li className="nav-item bg-white rounded-pill w-25">
                 <Link
-                  className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}
+                  className="nav-link"
                   to="/login"
                 >
                   Login
                 </Link>
               </li>
-              <li className="nav-item col bg-primary rounded-pill text-white">
+              <li className="nav-item bg-primary rounded-pill w-25 ms-2">
                 <Link
-                  className={`nav-link ${location.pathname === "/registrar" ? "active" : ""}`}
+                  className="nav-link"
                   to="/registrar"
                 >
                   Registro
