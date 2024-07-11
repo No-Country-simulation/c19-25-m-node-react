@@ -1,8 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5%
+}
+
+#containerLogin {
+  margin: 2rem auto;
+  padding: 2rem 0;
   text-align: center;
+  width: 100vh;
 }
 
 .logo {
@@ -39,4 +47,27 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.nav-link.active {
+  background-color: rgb(246, 231, 216);
+  color: black !important; 
+  border-radius: 5px;
+  padding-left: 3%; 
+}
+
+#navbarPrincipal {
+  background-color: rgb(94, 46, 1);
+}
+
+.nav-link {
+  color: white !important;
+}
+
+#togglerButtonNavbar {
+  background-color: rgb(246, 231, 216);
+}
+
+#imagenYUsuarioHome {
+  max-width: 1008px;
 }
