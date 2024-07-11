@@ -10,25 +10,21 @@ export default function Home() {
 
 
   useEffect(() => {
-    // Aquí deberías hacer una llamada a la API para obtener las reservas
-    // A continuación, un ejemplo de datos simulados:
-    const fetchedReservations = [
-      {
-        id: 1,
-        profileImage: 'https://via.placeholder.com/150',
-        name: 'Perico de los Palotes',
-        date: '2024-07-15',
-        rolUsuario: 'Paseador',
-      },
-      {
-        id: 2,
-        profileImage: 'https://via.placeholder.com/150',
-        name: 'Gerónimo Stilton',
-        date: '2024-08-01',
-        rolUsuario: 'Cuidador a tiempo completo',
-      },
-    ];
-    setReservations(fetchedReservations);
+    const fetchPaseadores = async () => {
+      try {
+        const response = await fetch('URL_DE_TU_API_PARA_OBTENER_PASEADORES');
+        if (response.ok) {
+          const data = await response.json();
+          setReservations(data); // Actualiza el estado con los paseadores obtenidos
+        } else {
+          console.error('Error al obtener los paseadores');
+        }
+      } catch (error) {
+        console.error('Error al obtener los paseadores:', error);
+      }
+    };
+  
+    fetchPaseadores();
   }, []);
 
   const today = new Date().toISOString().split('T')[0];
