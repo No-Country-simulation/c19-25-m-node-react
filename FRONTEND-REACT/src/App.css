@@ -3,14 +3,13 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  padding-bottom: 5%
 }
 
 #containerLogin {
-  margin: 2rem auto;
-  padding: 2rem 0;
+  margin: 0 auto;
   text-align: center;
   width: 100vh;
+  min-height: 93vh;
 }
 
 .logo {
@@ -57,11 +56,11 @@
 }
 
 #navbarPrincipal {
-  background-color: rgb(94, 46, 1);
+  background-color: rgb(234, 181, 34);
 }
 
 .nav-link {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 #togglerButtonNavbar {
@@ -70,4 +69,12 @@
 
 #imagenYUsuarioHome {
   max-width: 1008px;
+}
+
+
+
+/* Clases generales */
+
+.min-height-vh {
+  height: 93vh;
 }

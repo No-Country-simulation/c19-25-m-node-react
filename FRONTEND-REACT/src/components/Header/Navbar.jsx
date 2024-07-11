@@ -46,14 +46,7 @@ export default function Navbar() {
                   Perfil
                 </Link>
               </li>
-              <li className="nav-item col">
-                <Link
-                  className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}
-                  to="/login"
-                >
-                  Login
-                </Link>
-              </li>
+              
               <li className="nav-item col">
                 <Link
                   className={`nav-link ${location.pathname === "/buscador" ? "active" : ""}`}
@@ -62,7 +55,15 @@ export default function Navbar() {
                   Buscador
                 </Link>
               </li>
-              <li className="nav-item col">
+              <li className="nav-item col bg-white rounded-pill">
+                <Link
+                  className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item col bg-primary rounded-pill text-white">
                 <Link
                   className={`nav-link ${location.pathname === "/registrar" ? "active" : ""}`}
                   to="/registrar"

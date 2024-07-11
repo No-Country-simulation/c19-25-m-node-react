@@ -30,8 +30,8 @@ export default function Login() {
     };
 
     return (
-        <div id="containerLogin" className="d-flex justify-content-center">
-            <form ref={formRef} onSubmit={handleSubmit} className="w-50 p-0 mb-3 needs-validation border rounded text-start" noValidate>
+        <div id="containerLogin" className="d-flex justify-content-center align-items-center">
+            <form ref={formRef} onSubmit={handleSubmit} className="w-50 p-0 needs-validation border rounded text-start" noValidate>
                 <div className="container-fluid py-3 px-2">
                     <div className="row g-4">
                         <div className="col-12 col-md-6">
