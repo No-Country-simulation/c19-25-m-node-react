@@ -27,7 +27,7 @@ export default function Navbar() {
                   aria-current="page"
                   to="/"
                 >
-                  <i class="fa-solid fa-house"></i>
+                  <i className="fa-solid fa-house"></i>
                 </Link>
               </li>
               <li className="nav-item col">

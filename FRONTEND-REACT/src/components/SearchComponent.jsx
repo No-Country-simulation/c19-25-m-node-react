@@ -1,54 +1,55 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react';
 
-export default function SearchComponent () {
-  //setear los hooks useState
-  const [ users, setUsers ] = useState([])
-  const [ search, setSearch ] = useState("")
+export default function BookingSearch() {
+    const [city, setCity] = useState('');
+    const [petType, setPetType] = useState('');
+    const [priceFilter, setPriceFilter] = useState(''); 
+    const [ratingFilter, setRatingFilter] = useState(''); 
+    const [date, setDate] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
-  //función para traer los datos de la API
-  const URL = 'https://jsonplaceholder.typicode.com/users'
+    const handleSearch = () => {
+        const searchParams = {
+            city,
+            petType,
+            priceFilter,
+            ratingFilter,
+            date
+        };
 
-  const showData = async () => {
-    const response = await fetch(URL)
-    const data = await response.json()
-    //console.log(data)
-    setUsers(data)
-  }   
-   //función de búsqueda
-  const searcher = (e) => {
-      setSearch(e.target.value)   
-  }
+        const queryParams = new URLSearchParams(searchParams).toString();
+        const url = `/api/search?${queryParams}`;
 
-   //metodo de filtrado 2   
-   const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
-  
-   useEffect( ()=> {
-    showData()
-  }, [])
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al buscar datos');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setSearchResults(data); 
+        })
+        .catch(error => {
+            console.error('Error de red:', error);
+        });
+    };
 
-  // Vamos a hacer un filtrado por localidad primero y podemos hacer un harcodeado.
-  
-  //renderizamos la vista
-  return (
-    <div className='container'>
-        <input value={search} onChange={searcher} type="text" placeholder='Search' className='form-control'/>
-        <table className='table table-striped table-hover mt-5 shadow-lg'>
-            <thead>
-                <tr className='bg-curso text-white'>
-                    <th>NAME</th>
-                    <th>USER NAME</th>
-                </tr>
-            </thead>
-            <tbody>
-                { results.map( (user) => (
-                    <tr key={user.id}>
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
-                    </tr>                    
+    return (
+        <div>
+            <input type="text" placeholder="Ciudad" value={city} onChange={(e) => setCity(e.target.value)} />
+            <input type="text" placeholder="Tipo de Mascota" value={petType} onChange={(e) => setPetType(e.target.value)} />
+            <input type="number" placeholder="Precio" value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)} />
+            <input type="number" placeholder="Valoración" value={ratingFilter} onChange={(e) => setRatingFilter(e.target.value)} />
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+            <button onClick={handleSearch}>Buscar</button>
+
+            { }
+            <ul>
+                {searchResults.map(result => (
+                    <li key={result.id}>{result.name}</li>
                 ))}
-            </tbody>
-        </table>
-    </div>
-  )
+            </ul>
+        </div>
+    );
 }
- SearchComponent
