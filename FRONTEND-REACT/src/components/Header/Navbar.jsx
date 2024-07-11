@@ -5,7 +5,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg d-flex justify-content-between py-1" id="navbarPrincipal">
+      <nav className="navbar mt-0 navbar-expand-lg d-flex justify-content-between py-1" id="navbarPrincipal">
         <div className="container-fluid ">
           <button
             className="navbar-toggler"
@@ -71,13 +71,6 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-            {/* <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> 
-            
-            EN PRINCIPIO LO DEJO QUITADO PORQUE NO HEMOS DICHO DE INCLUIRL, ES LA BARRA DE BUSCADOR.
-            */}
           </div>
         </div>
       </nav>
