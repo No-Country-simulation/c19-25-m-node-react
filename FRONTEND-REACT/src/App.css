@@ -105,6 +105,10 @@
 }
 
 /* Clases generales */
+.max-w-720 {
+  max-width: 720px;
+}
+
 .min-height-vh {
   height: 93vh;
 }

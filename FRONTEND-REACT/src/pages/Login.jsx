@@ -1,84 +1,68 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-export default function Login() {
+import axios from 'axios';
+
+const Login = () => {
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+        usuario: '',
+        password: '',
     });
 
-    const formRef = useRef(null);
-
     const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [id]: value }));
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const form = formRef.current;
-
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-
-        form.classList.add('was-validated');
-
-        if (form.checkValidity() === true) {
-            console.log(formData);
-            // Aquí puedes añadir la lógica para enviar el formulario
+        try {
+            const response = await axios.post('http://localhost:4000/usuario/login', formData);
+            console.log('Inicio de sesión exitoso:', response.data);
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
         }
     };
 
     return (
-        <div id="containerLogin" className="d-flex justify-content-center align-items-center">
-            <form ref={formRef} onSubmit={handleSubmit} className="w-50 p-0 needs-validation border rounded text-start" noValidate>
-                <div className="container-fluid py-3 px-2">
-                    <div className="row g-4">
-                        <div className="col-12 col-md-6">
-                            <label htmlFor="email" className="form-label ms-2">Correo Electrónico</label>
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="ejemplo@ejemplo.com"
-                                className="form-control"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                            <div className="valid-feedback">
-                                ¡Se ve bien!
-                            </div>
-                            <div className="invalid-feedback">
-                                Por favor, ingrese su correo electrónico.
-                            </div>
-                        </div>
+        <div className="container min-height-vh max-w-720 d-flex flex-column justify-content-center">
+            <h2 className="mb-4">Inicio de Sesión:</h2>
+            <div className='container max-w-720 border rounded p-0'>
+                <form onSubmit={handleSubmit} className='mt-2' id='logInForm'>
+                    <div className="form-group m-3 ">
+                        <label htmlFor="usuario">Usuario</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="usuario"
+                            name="usuario"
+                            value={formData.usuario}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group m-3">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                        <div className="col-12 col-md-6">
-                            <label htmlFor="password" className="form-label ms-2">Contraseña</label>
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="********"
-                                className="form-control"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                            />
-                            <div className="valid-feedback">
-                                ¡Se ve bien!
-                            </div>
-                            <div className="invalid-feedback">
-                                Por favor, ingrese su contraseña.
-                            </div>
-                        </div>
+                    <div className='container-fluid mt-3 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
+                        <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
                     </div>
-                </div>
-                <div className="container-fluid bg-body-secondary py-2 px-2">
-                    <div className="d-grid gap-1 d-md-flex justify-content-md-end">
-                        <button className="btn btn-success" type="submit">Ingresar</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+
+            </div>
         </div>
     );
-}
+};
+
+export default Login;

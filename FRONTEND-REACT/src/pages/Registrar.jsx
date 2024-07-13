@@ -36,8 +36,8 @@ const RegisterForm = () => {
             <h2 className="mb-4">¡Hola!</h2>
             <h4 className='ms-2'>Te invitamos a registrarte y formar parte de nuestra comunidad:</h4>
             <div className='border rounded p-0 mb-4 mt-3'>
-                <form onSubmit={handleSubmit} className='mx-4'>
-                    <div className="form-group">
+                <form onSubmit={handleSubmit} className=''>
+                    <div className="form-group m-3">
                         <label htmlFor="nombre" className='form-label'>Nombre</label>
                         <input
                             type="text"
@@ -49,7 +49,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="apellido" className='form-label'>Apellido</label>
                         <input
                             type="text"
@@ -61,7 +61,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="fechaNacimiento" className='form-label'>Fecha de Nacimiento</label>
                         <input
                             type="date"
@@ -73,7 +73,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="email" className='form-label'>Email</label>
                         <input
                             type="email"
@@ -85,7 +85,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="password" className='form-label'>Password</label>
                         <input
                             type="password"
@@ -97,7 +97,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="direccion" className='form-label'>Dirección</label>
                         <input
                             type="text"
@@ -109,7 +109,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="localidad" className='form-label'>Localidad</label>
                         <input
                             type="text"
@@ -121,7 +121,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="provincia" className='form-label'>Provincia</label>
                         <input
                             type="text"
@@ -133,7 +133,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group m-3">
                         <label htmlFor="telefono" className='form-label'>Teléfono</label>
                         <input
                             type="tel"
@@ -145,16 +145,18 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <fieldset disabled>
+                    <fieldset disabled className='m-3'>
                         <div className="mb-3">
                             <label for="disabledTextInput" className="form-label">País de residencia</label>
                             <input type="text" id="disabledTextInput" className="form-control" placeholder="Argentina (De momento solo operamos en Argentina, pronto llegaremos al mundo entero)" />
                         </div>
                     </fieldset>
+
+                    <div className='container-fluid m-0 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
+                        <button type="submit" className="btn btn-success my-3 ">Registrar</button>
+                    </div>
                 </form>
-                <div className='container-fluid m-0 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                    <button type="submit" className="btn btn-success my-3 ">Registrar</button>
-                </div>
+
             </div>
         </div>
     );
