@@ -1,11 +1,6 @@
 import React from "react";
 
-let datosComponente = {
-    id: null,
-    imagen: null,
-    tittle: null,
-    subtittle: null,
-};
+
 
 export default function ComponenteHome1 ({ image, tittle, subtittle }) {
     
