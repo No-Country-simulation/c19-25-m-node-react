@@ -59,7 +59,7 @@
 }
 
 #navbarPrincipal {
-  background-color: rgb(234, 181, 34);
+  background-color: rgb(255, 209, 82);
 }
 
 .nav-link {
@@ -67,8 +67,10 @@
 }
 
 #togglerButtonNavbar {
-  background-color: rgb(246, 231, 216);
+color: black;
 }
+
+
 #divContainerTextoYProfileHome{
  max-width: 720px;
  margin-top: 7%;
