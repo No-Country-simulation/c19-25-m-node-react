@@ -28,22 +28,30 @@ export default function Home() {
 
   return (
     <>
-      <div className="text-start w-auto mx-3 p-0 mt-5">
-        <div className='container-lg d-flex flex-column align-items-center'>
-          <div className="d-flex justify-content-between align-items-center row" id='imagenYUsuarioHome'>
-            <img src="https://via.placeholder.com/250" alt="Imagen de usuario" className='rounded-circle shadow shadow-4-strong col-7 col-md-3 mb-4'/>
-            <h1 className='col-12 col-md-9 mb-4 text-md-end'>Bienvenido a Yo te cuido <strong>USUARIO</strong></h1>
+      <div className="w-auto mx-3 p-0 mt-5">
+        <div className='d-flex flex-column justify-content-between mx-auto mb-5' id='divContainerTextoYProfileHome'>
+          <div className="d-flex align-items-center" id='imagenYUsuarioHome'>
+            <div id='divImageProfile'>
+            <img src="https://via.placeholder.com/250" alt="Imagen de usuario" className='img roundedImageCircle' id='imageProfileHome' />
+            </div>
+            <h1 className='ms-2 ms-md-5'>Bienvenido a Yo te cuido <strong>USUARIO</strong></h1>
           </div>
-          <div className='d-flex flex-column justify-content-center align-items-center text-center'>
+          <div className='d-flex flex-column align-items-center align-items-md-center text-center ms-0 mt-5' id='textoDescripcion'>
             <h3>Un poco sobre nosotros:</h3>
+            <hr className='w-50' />
             <h4>En Yo te Cuido podrás encontrar encontrar a personas que se preocupen por tu mascota</h4>
             <hr className='w-50' />
             <h5>Ponemos en contacto a personas que necesitan cuidado para sus mascotas con cuidadores especializados.</h5>
           </div>
         </div>
 
-        <div className='container'>
-          <div className="row mt-5">
+
+
+
+
+
+        <div className="container" id='divComponentesHome'>
+          <div className="row ">
             {datosComponenteHome.map((datosComponente) => (
               <ComponenteHome1
                 key={datosComponente.id}

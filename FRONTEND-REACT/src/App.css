@@ -3,14 +3,13 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  padding-bottom: 5%
 }
 
 #containerLogin {
-  margin: 2rem auto;
-  padding: 2rem 0;
+  margin: 0 auto;
   text-align: center;
   width: 100vh;
+  min-height: 93vh;
 }
 
 .logo {
@@ -19,9 +18,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -30,6 +31,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -51,23 +53,72 @@
 
 .nav-link.active {
   background-color: rgb(246, 231, 216);
-  color: black !important; 
+  color: black !important;
   border-radius: 5px;
-  padding-left: 3%; 
+  padding-left: 3%;
 }
 
 #navbarPrincipal {
-  background-color: rgb(94, 46, 1);
+  background-color: rgb(255, 209, 82);
 }
 
 .nav-link {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 #togglerButtonNavbar {
-  background-color: rgb(246, 231, 216);
+color: black;
 }
 
-#imagenYUsuarioHome {
-  max-width: 1008px;
+
+#divContainerTextoYProfileHome{
+ max-width: 720px;
+ margin-top: 7%;
 }
+
+#imageProfileHome {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+#divComponentesHome {
+  margin-top: 5%;
+}
+
+#imageProfileHome {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+#divComponentesHome {
+  margin-top: 5%;
+}
+#divImageProfile{
+  max-width: 250px;
+  max-height: 250px;
+}
+#imageProfileHome {
+  width: 100%;
+  height: auto;
+}
+
+#divComponentesHome {
+  margin-top: 5%;
+}
+
+/* Clases generales */
+.max-w-720 {
+  max-width: 720px;
+}
+
+.min-height-vh {
+  height: 93vh;
+}
+
+.roundedImageCircle {
+  border-radius: 15%;
+}
+
+
+
+
