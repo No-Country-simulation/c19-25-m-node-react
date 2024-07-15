@@ -20,8 +20,13 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:4000/usuario/login', formData);
             console.log('Inicio de sesión exitoso:', response.data);
+            // Redirigir al usuario a Home
+
         } catch (error) {
-            console.error('Error al iniciar sesión:', error);
+            // Mostrar un pop-up que diga que ha pasado algo malo al loguearse y hacer focus en el que esté mal.
+
+            // Imprimir en terminal
+            console.error('Error registrando el usuario:', error);
         }
     };
 

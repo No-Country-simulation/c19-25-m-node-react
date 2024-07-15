@@ -26,7 +26,12 @@ const RegisterForm = () => {
         try {
             const response = await axios.post('http://localhost:4000/usuario/registrar', formData);
             console.log('Usuario registrado:', response.data);
+            // Redireccionar al usuario a Log-in
+            
         } catch (error) {
+            // Mostrar un pop-up que diga que ha pasado algo malo al registrarse
+
+            // Imprimir en terminal
             console.error('Error registrando el usuario:', error);
         }
     };

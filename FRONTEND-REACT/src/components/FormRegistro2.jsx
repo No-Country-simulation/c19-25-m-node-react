@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
+// import { useHistory } from 'react-router-dom';
 
-const SwitchComponent = () => {
+
+const FormRegistro2 = () => {
     // Estado para manejar los estados de 11 switches y sus preguntas
     const [switches, setSwitches] = useState([
         { question: "¿Tienes experiencia previa cuidando mascotas?", isChecked: false },
@@ -38,6 +40,8 @@ const SwitchComponent = () => {
 
                     console.log('Datos enviados correctamente', response.data);
                     // Aquí podrías mostrar un mensaje de éxito o redireccionar al usuario
+
+
                 } catch (error) {
                     console.error('Error al enviar los datos:', error);
                     // Manejar el error, mostrar un mensaje al usuario, etc.
@@ -97,4 +101,4 @@ const SwitchComponent = () => {
     );
 };
 
-export default SwitchComponent;
+export default FormRegistro2;
