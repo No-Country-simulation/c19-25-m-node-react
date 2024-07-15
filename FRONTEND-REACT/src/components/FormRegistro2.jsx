@@ -73,7 +73,7 @@ const SwitchComponent = () => {
                 {switches.map((item, index) => (
                     <div key={index} className='my-3 fs-5'>
                         <span>{item.question}:</span>
-                        <div className="form-check form-switch">
+                        <div className="form-check form-switch mt-2">
                             <input
                                 className="form-check-input"
                                 type="checkbox"
