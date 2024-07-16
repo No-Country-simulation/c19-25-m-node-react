@@ -7,7 +7,7 @@ const Anuncios = () => {
   return (
     <div className="container">
       <h2>Página de Anuncios</h2>
-      <FormRegistro2 />
+      Aquí tiene que ir la carga del anuncio.
     </div>
   );
 };
