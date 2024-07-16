@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import Home from './routes/Home.jsx'
 import Login from './routes/Login.jsx'
@@ -7,6 +7,7 @@ import Buscador from './routes/Buscador.jsx'
 import Registrar from './routes/Registrar.jsx'
 import Anuncios from './pages/Anuncios.jsx'
 import Header from './components/Header/Header.jsx'
+import FormRegistro2 from './components/FormRegistro2.jsx'
 
 import './App.css'
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/registrar' element={<Registrar />} />
           <Route path='/buscador' element={<Buscador />} />
           <Route path='/anuncios' element={<Anuncios />} />
+          <Route path='/form-registro' element={<FormRegistro2 />} />
         </Routes>
       </div>
 

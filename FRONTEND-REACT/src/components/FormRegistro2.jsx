@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-// import { useHistory } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const FormRegistro2 = () => {
     // Estado para manejar los estados de 11 switches y sus preguntas
@@ -19,6 +18,13 @@ const FormRegistro2 = () => {
         { question: "¿Estás dispuesto a proporcionar informes fidedignos sobre el estado de las mascotas a los propietarios, si es necesario?", isChecked: false },
         { question: "¿Estás dispuesto a seguir las instrucciones específicas de cuidado proporcionadas por los propietarios de las mascotas?", isChecked: false }
     ]);
+
+    // Función para volver a perfil después de completar el formulario:
+    const navigate = useNavigate();
+
+    const returnToPerfil = () => {
+        navigate('/perfil');
+    };
 
     // Función para manejar el cambio de estado de un switch individual
     const handleSwitchChange = (index) => (event) => {
@@ -40,11 +46,16 @@ const FormRegistro2 = () => {
 
                     console.log('Datos enviados correctamente', response.data);
                     // Aquí podrías mostrar un mensaje de éxito o redireccionar al usuario
+                    returnToPerfil()
 
 
                 } catch (error) {
                     console.error('Error al enviar los datos:', error);
                     // Manejar el error, mostrar un mensaje al usuario, etc.
+
+                    // Provisional hasta que arreglemos el envío:
+                    returnToPerfil()
+
                 }
             }
         } else {
@@ -69,7 +80,7 @@ const FormRegistro2 = () => {
     }
 
     return (
-        <div className='mx-3 container min-height-vh'>
+        <div className='mx-3 container min-height-vh my-3'>
             <div>
                 <h2 className='my-4'>Para poder publicar un anuncio necesitamos que respondas seriamente a estas preguntas:</h2>
             </div>

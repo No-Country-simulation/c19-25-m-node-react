@@ -7,11 +7,7 @@ const Anuncios = () => {
   return (
     <div className="container">
       <h2>Página de Anuncios</h2>
-      <Routes>
-        <Route path="/" element={<FormRegistro2 />} />
-        <Route path="/crear-anuncio" element={<CrearAnuncio />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <FormRegistro2 />
     </div>
   );
 };
