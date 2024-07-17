@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ModalComponent from './ModalComponent';
 
 const FormRegistro2 = () => {
-    // Estado para manejar los estados de 11 switches y sus preguntas
     const [switches, setSwitches] = useState([
         { question: "¿Tienes experiencia previa cuidando mascotas?", isChecked: false },
         { question: "¿Eres consciente de que al publicar un anuncio con perros, gatos, pájaros o peces, estás declarando tu compromiso de cuidar de estas mascotas?", isChecked: false },
@@ -19,43 +19,43 @@ const FormRegistro2 = () => {
         { question: "¿Estás dispuesto a seguir las instrucciones específicas de cuidado proporcionadas por los propietarios de las mascotas?", isChecked: false }
     ]);
 
-    // Función para volver a perfil después de completar el formulario:
+    const [mostrarModalEnvio, setMostrarModalEnvio] = useState(false);
+    const [modalConfirmar, setModalConfirmar] = useState(false);
+    const [errorForm2, setErrorForm2] = useState('');
+
     const navigate = useNavigate();
 
     const returnToPerfil = () => {
         navigate('/perfil');
     };
 
-    // Función para manejar el cambio de estado de un switch individual
     const handleSwitchChange = (index) => (event) => {
         const newSwitches = [...switches];
         newSwitches[index].isChecked = event.target.checked;
         setSwitches(newSwitches);
     };
 
-    // Función para manejar el guardado en la base de datos
+    const showModalEnvio = () => {
+        setMostrarModalEnvio(true);
+    };
+
+    const handleConfirmar = () => {
+        setModalConfirmar(true);
+        saveToDatabase();
+    };
+
     const saveToDatabase = async () => {
         const allYes = switches.every(switchItem => switchItem.isChecked === true);
 
         if (allYes) {
-            const confirmed = window.confirm("Estas preguntas tienen consecuencias legales y no se pueden responder a la ligera. ¿Estás seguro de haber leído y respondido bien todas las preguntas?");
-
-            if (confirmed) {
+            if (modalConfirmar) {
                 try {
-                    const response = await axios.post('http://tu-backend.com/guardarDatos', switches);
-
+                    const response = await axios.post('http://tu-backend.com/guardarDatos', allYes);
                     console.log('Datos enviados correctamente', response.data);
-                    // Aquí podrías mostrar un mensaje de éxito o redireccionar al usuario
-                    returnToPerfil()
-
-
+                    returnToPerfil();
                 } catch (error) {
+                    setErrorForm2(error.message);
                     console.error('Error al enviar los datos:', error);
-                    // Manejar el error, mostrar un mensaje al usuario, etc.
-
-                    // Provisional hasta que arreglemos el envío:
-                    returnToPerfil()
-
                 }
             }
         } else {
@@ -63,11 +63,10 @@ const FormRegistro2 = () => {
         }
     };
 
-    // Determinar si mostrar el botón de guardar o el mensaje de todas las respuestas en Sí
     let buttonOrMessage;
     if (switches.every(switchItem => switchItem.isChecked)) {
         buttonOrMessage = (
-            <button className="btn btn-success mt-3 fs-4 mb-4" onClick={saveToDatabase}>
+            <button className="btn btn-success mt-3 fs-4 mb-4" onClick={showModalEnvio}>
                 Enviar
             </button>
         );
@@ -80,35 +79,49 @@ const FormRegistro2 = () => {
     }
 
     return (
-        <div className='mx-3 container min-height-vh my-3'>
-            <div>
-                <h2 className='my-4'>Para poder publicar un anuncio necesitamos que respondas seriamente a estas preguntas:</h2>
-            </div>
-            <div className='border rounded px-3'>
-                {switches.map((item, index) => (
-                    <div key={index} className='my-3 fs-5'>
-                        <span>{item.question}:</span>
-                        <div className="form-check form-switch mt-2">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id={`flexSwitchCheckDefault${index}`}
-                                checked={item.isChecked}
-                                onChange={handleSwitchChange(index)}
-                            />
-                            <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>
-                                {item.isChecked ? 'Sí' : 'No'}
-                            </label>
+        <>
+            <div className='mx-3 container min-height-vh my-3'>
+                <div>
+                    <h2 className='my-4'>Para poder publicar un anuncio necesitamos que respondas seriamente a estas preguntas:</h2>
+                </div>
+                <div className='border rounded px-3'>
+                    {switches.map((item, index) => (
+                        <div key={index} className='my-3 fs-5'>
+                            <span>{item.question}:</span>
+                            <div className="form-check form-switch mt-2">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id={`flexSwitchCheckDefault${index}`}
+                                    checked={item.isChecked}
+                                    onChange={handleSwitchChange(index)}
+                                />
+                                <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>
+                                    {item.isChecked ? 'Sí' : 'No'}
+                                </label>
+                            </div>
+                            <hr className='mx-auto text-dark' />
                         </div>
-                        <hr className='mx-auto text-dark' />
-                    </div>
-
-                ))}
+                    ))}
+                </div>
+                {buttonOrMessage}
             </div>
-            {buttonOrMessage}
 
-        </div>
+            {mostrarModalEnvio && (
+                <ModalComponent
+                    classNameModal="modal fade"
+                    idModal="modalConfirmacionEnvioForm2"
+                    tittleModal="¿Seguro que has leido todo bien?"
+                    bodyModal="El envío de este registro puede acarrear futuras consecuencias legales. Te rogamos que leas bien todas las preguntas."
+                    classNameBotonCerrar="btn btn-outline-danger"
+                    botonCerrar="Cerrar"
+                    classNameBotonEnviar="btn btn-outline-success"
+                    onClickEnviar={handleConfirmar}
+                    botonEnviar="Enviar Formulario"
+                />
+            )}
+        </>
     );
 };
 

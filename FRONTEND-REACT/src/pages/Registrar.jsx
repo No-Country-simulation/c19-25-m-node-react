@@ -14,6 +14,8 @@ const RegisterForm = () => {
         fechaNacimiento: '', // Nuevo campo para la fecha de nacimiento
     });
 
+    
+
     const handleChange = (e) => {
         setFormData({
             ...formData,

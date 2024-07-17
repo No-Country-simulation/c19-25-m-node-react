@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
+    const navigateToRegistro = () => {
+        navigate('/registrar');
+    }
+
     const [formData, setFormData] = useState({
         usuario: '',
         password: '',
@@ -61,7 +68,8 @@ const Login = () => {
                     </div>
 
                     <div className='container-fluid mt-3 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                        <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
+                    <button type="button" className="btn btn-primary my-3 me-4" onClick={navigateToRegistro} >No tengo cuenta</button>
+                    <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
                     </div>
                 </form>
 
