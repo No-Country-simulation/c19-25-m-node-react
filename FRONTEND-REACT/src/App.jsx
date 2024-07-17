@@ -9,29 +9,30 @@ import Anuncios from './pages/Anuncios.jsx'
 import Header from './components/Header/Header.jsx'
 import FormRegistro2 from './components/FormRegistro2.jsx'
 import Onboarding from './pages/OnBoarding.jsx'
-
+import TokenProvider from './components/Provider.jsx'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <div className='marginBottomHeader'>
-        <Header />
-      </div>
-      <div>
-        <Routes>
-          <Route path='/' element={<Onboarding />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/perfil' element={<Perfil />} />
-          <Route path='/registrar' element={<Registrar />} />
-          <Route path='/buscador' element={<Buscador />} />
-          <Route path='/anuncios' element={<Anuncios />} />
-          <Route path='/form-registro' element={<FormRegistro2 />} />
-        </Routes>
-      </div>
-
+      <TokenProvider>
+        <div className='marginBottomHeader'>
+          <Header />
+        </div>
+        <div>
+          <Routes>
+            <Route path='/' element={<Onboarding />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/perfil' element={<Perfil />} />
+            <Route path='/registrar' element={<Registrar />} />
+            <Route path='/buscador' element={<Buscador />} />
+            <Route path='/anuncios' element={<Anuncios />} />
+            <Route path='/form-registro' element={<FormRegistro2 />} />
+          </Routes>
+        </div>
+      </TokenProvider>
     </>
   )
 }

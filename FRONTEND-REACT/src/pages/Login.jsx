@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AppContext } from '../components/Provider';
 
 const Login = () => {
 
@@ -9,6 +10,8 @@ const Login = () => {
     const navigateToRegistro = () => {
         navigate('/registrar');
     }
+    
+    const [token, setToken] = useContext (AppContext)
 
     const [formData, setFormData] = useState({
         usuario: '',
