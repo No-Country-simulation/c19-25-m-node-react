@@ -32,6 +32,9 @@ const Login = () => {
             console.log('Inicio de sesión exitoso:', response.data);
             // Redirigir al usuario a Home
 
+            // Guardar el token en el contexto
+            setToken(response.data.token);
+
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al loguearse y hacer focus en el que esté mal.
 

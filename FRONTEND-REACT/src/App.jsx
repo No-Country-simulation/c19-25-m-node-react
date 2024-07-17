@@ -15,7 +15,6 @@ import './App.css'
 function App() {
 
   return (
-    <>
       <TokenProvider>
         <div className='marginBottomHeader'>
           <Header />
@@ -33,7 +32,6 @@ function App() {
           </Routes>
         </div>
       </TokenProvider>
-    </>
   )
 }
 
