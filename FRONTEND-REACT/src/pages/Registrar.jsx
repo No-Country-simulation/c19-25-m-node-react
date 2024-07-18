@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -29,6 +31,7 @@ const RegisterForm = () => {
             const response = await axios.post('http://localhost:4000/usuario/registrar', formData);
             console.log('Usuario registrado:', response.data);
             // Redireccionar al usuario a Log-in
+            useNavigate('/login')
             
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al registrarse

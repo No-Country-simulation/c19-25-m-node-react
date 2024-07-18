@@ -24,9 +24,9 @@ export default function Navbar() {
           <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item mx-2">
               <Link
-                className={`nav-link py-3 ${location.pathname === "/" ? "active" : ""}`}
+                className={`nav-link py-3 ${location.pathname === "/home" ? "active" : ""}`}
                 aria-current="page"
-                to="/"
+                to="/home"
               >
                 <i className="fa-solid fa-house"></i>
               </Link>
