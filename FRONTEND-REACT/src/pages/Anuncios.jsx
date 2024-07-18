@@ -17,6 +17,10 @@ const Anuncios = () => {
       Voyasudomicilio: false,
       Soloenmidomicilio: false
     },
+    selectedRols: {
+      Paseador: false,
+      Cuidador: false
+    },
     distanciaMaxima: '',
     fechaInicio: '',
     fechaFin: '',

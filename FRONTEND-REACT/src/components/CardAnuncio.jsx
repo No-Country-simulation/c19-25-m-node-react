@@ -9,10 +9,12 @@ const CardAnuncio = ({ anuncio }) => {
       if (option === "Soloenmidomicilio") return "Solo en mi domicilio";
       return option;
     })
-    .join(", ");
+    .join(" y ");
 
   // Calcular la dirección con la distancia máxima
   const direccionConDistancia = `${anuncio.direccion || 'No especificada'} (${anuncio.distanciaMaxima || 0} km)`;
+  const selectedRols = Object.keys(anuncio.selectedRols).filter((rol) => anuncio.selectedRols[rol]).join(" y ");
+
 
   // Formatear fechas y horas
   const formatDateTime = (dateTimeString) => {
@@ -43,7 +45,8 @@ const CardAnuncio = ({ anuncio }) => {
             <p className="card-text">Disponible para cuidados en {direccionConDistancia}</p>
             <p className="card-text">Disponible para cuidar {selectedPets}</p>
             <p className="card-text">Disponible para {serviceOptions}</p>
-            <p className="card-text">Precio por hora: {anuncio.precio || 'No especificado'}</p>
+            <p className="card-text">Disponible para {selectedRols}</p>
+            <p className="card-text">Precio por hora: {anuncio.precio || 'No especificado'} <i class="fa-solid fa-dollar-sign"></i></p>
             <p className="card-text">Fecha de inicio del servicio: {formatDateTime(anuncio.fechaInicio)}</p>
             <p className="card-text">Fecha de fin del servicio: {formatDateTime(anuncio.fechaFin)}</p>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ModalComponent from './ModalComponent';
@@ -41,11 +41,21 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     onAnuncioChange({ [id]: value });
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxPetChange = (event) => {
     const { id, checked } = event.target;
     onAnuncioChange({
       selectedPets: {
         ...anuncio.selectedPets,
+        [id]: checked
+      }
+    });
+  };
+
+  const handleCheckboxRolChange = (event) => {
+    const { id, checked } = event.target;
+    onAnuncioChange({
+      selectedRols: {
+        ...anuncio.selectedRols,
         [id]: checked
       }
     });
@@ -65,6 +75,7 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     event.preventDefault();
     const atLeastOnePetSelected = Object.values(anuncio.selectedPets).some((isSelected) => isSelected);
     const atLeastOneServiceSelected = Object.values(anuncio.serviceOptions).some((isSelected) => isSelected);
+    const atLeastOneRolSelected = Object.values(anuncio.selectedRols).some((isSelected) => isSelected);
 
     if (!atLeastOnePetSelected) {
       setFormError('Por favor, selecciona al menos un tipo de mascota que estás dispuesto a cuidar.');
@@ -74,7 +85,10 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
       setFormError('La fecha de inicio no puede ser en el pasado.');
     } else if (anuncio.fechaFin <= anuncio.fechaInicio) {
       setFormError('La fecha de fin debe ser posterior a la fecha de inicio.');
-    } else {
+    } else if (!atLeastOneRolSelected) {
+      setFormError('Debe seleccionar un rol.');
+    }
+    else {
       setFormError('');
       setMostrarModalEnvio(true);
     }
@@ -113,14 +127,14 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
                       id={pet}
                       value={pet}
                       checked={anuncio.selectedPets[pet]}
-                      onChange={handleCheckboxChange}
+                      onChange={handleCheckboxPetChange}
                     />
                     <label className="form-check-label" htmlFor={pet}>{pet}</label>
                   </div>
                 ))}
               </div>
             </div>
-
+        
             <div className="mt-3">
               <label htmlFor="serviceOptions" className="form-label">Opciones de servicio:</label>
               <div id="serviceOptions">
@@ -135,6 +149,25 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
                       onChange={handleServiceOptionChange}
                     />
                     <label className="form-check-label" htmlFor={option.replace(/\s+/g, '')}>{option}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="selectedRols" className="form-label">Rol que quieres ocupar:</label>
+              <div id="selectedRols">
+                {['Paseador', 'Cuidador'].map((rol) => (
+                  <div className="form-check form-check-inline" key={rol}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id={rol}
+                      value={rol}
+                      checked={anuncio.selectedRols[rol]}
+                      onChange={handleCheckboxRolChange}
+                    />
+                    <label className="form-check-label" htmlFor={rol}>{rol}</label>
                   </div>
                 ))}
               </div>
