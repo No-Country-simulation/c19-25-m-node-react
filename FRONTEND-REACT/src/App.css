@@ -59,7 +59,7 @@
 }
 
 #navbarPrincipal {
-  background-color: rgb(255, 209, 82);
+  background-color: #FDC500;
 }
 
 .nav-link {
@@ -112,7 +112,7 @@ color: black;
 }
 
 .min-height-vh {
-  height: 93vh;
+  height: 92.5vh;
 }
 
 .roundedImageCircle {

@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AppContext } from '../components/Provider';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
+    const navigateToRegistro = () => {
+        navigate('/registrar');
+    }
+    
+    const [token, setToken] = useContext (AppContext)
+
     const [formData, setFormData] = useState({
         usuario: '',
         password: '',
@@ -21,6 +31,9 @@ const Login = () => {
             const response = await axios.post('http://localhost:4000/usuario/login', formData);
             console.log('Inicio de sesión exitoso:', response.data);
             // Redirigir al usuario a Home
+
+            // Guardar el token en el contexto
+            setToken(response.data.token);
 
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al loguearse y hacer focus en el que esté mal.
@@ -61,7 +74,8 @@ const Login = () => {
                     </div>
 
                     <div className='container-fluid mt-3 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                        <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
+                    <button type="button" className="btn btn-primary my-3 me-4" onClick={navigateToRegistro} >No tengo cuenta</button>
+                    <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
                     </div>
                 </form>
 
