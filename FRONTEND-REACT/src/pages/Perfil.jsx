@@ -24,27 +24,29 @@ export default function Perfil() {
             fecha_nac: '10/04/1995',
         }
     ]
-    const usuario = datosUsuario[0];
 
+    const usuario = datosUsuario[0];
 
     return (
         <>
-            <h1>Perfil</h1>
-            <div>
-            <EditarDatosPerfil
-                    imagenProfile={usuario.imagenProfile}
-                    nombre={usuario.nombre}
-                    apellido={usuario.apellido}
-                    email={usuario.email}
-                    direccion={usuario.direccion}
-                    localidad={usuario.localidad}
-                    provincia={usuario.provincia}
-                    telefono={usuario.telefono}
-                    fecha_nac={usuario.fecha_nac}
-                />
-            </div>
-            <div>
-                <button type="button" class="btn btn-success ms-4" onClick={handleButtonClick}>Quiero convertirme en cuidador</button>
+            <div className='container mb-5 mt-3 min-height-vh'> 
+                <h1>Perfil</h1>
+                <div>
+                    <EditarDatosPerfil
+                        imagenProfile={usuario.imagenProfile}
+                        nombre={usuario.nombre}
+                        apellido={usuario.apellido}
+                        email={usuario.email}
+                        direccion={usuario.direccion}
+                        localidad={usuario.localidad}
+                        provincia={usuario.provincia}
+                        telefono={usuario.telefono}
+                        fecha_nac={usuario.fecha_nac}
+                    />
+                </div>
+                <div className='text-center '>
+                    <button type="button" class="btn btn-outline-secondary fs-1" onClick={handleButtonClick}>Quiero convertirme en cuidador</button>
+                </div>
             </div>
         </>
     );
