@@ -106,13 +106,19 @@ color: black;
   margin-top: 5%;
 }
 
+#imgCardAnuncio{
+  max-width: 400px;
+  max-width: 400px;
+}
+
 /* Clases generales */
 .max-w-720 {
   max-width: 720px;
 }
 
 .min-height-vh {
-  height: 92.5vh;
+  min-height: 92.5vh;
+
 }
 
 .roundedImageCircle {
