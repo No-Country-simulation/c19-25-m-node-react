@@ -3,15 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../components/Provider';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const Login = () => {
+
 
     const navigate = useNavigate();
 
     const navigateToRegistro = () => {
         navigate('/registrar');
     }
-    
-    const [token, setToken] = useContext (AppContext)
+
+    const [token, setToken] = useContext(AppContext)
 
     const [formData, setFormData] = useState({
         usuario: '',
@@ -28,7 +32,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:4000/usuario/login', formData);
+            const response = await axios.post(`${ backendUrl }/usuario/login`, formData);
             console.log('Inicio de sesión exitoso:', response.data);
             // Redirigir al usuario a Home
 
@@ -74,8 +78,8 @@ const Login = () => {
                     </div>
 
                     <div className='container-fluid mt-3 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                    <button type="button" className="btn btn-primary my-3 me-4" onClick={navigateToRegistro} >No tengo cuenta</button>
-                    <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
+                        <button type="button" className="btn btn-primary my-3 me-4" onClick={navigateToRegistro} >No tengo cuenta</button>
+                        <button type="submit" className="btn btn-success my-3" for='logInForm'>Iniciar Sesión</button>
                     </div>
                 </form>
 
