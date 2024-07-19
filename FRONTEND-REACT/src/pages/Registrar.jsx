@@ -6,6 +6,8 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const RegisterForm = () => {
 
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
@@ -33,7 +35,7 @@ const RegisterForm = () => {
             const response = await axios.post(`${backendUrl}/usuario/registrar`, formData);
             console.log('Usuario registrado:', response.data);
             // Redireccionar al usuario a Log-in
-            useNavigate('/login')
+            navigate('/login')
             
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al registrarse
@@ -73,18 +75,18 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    {/* <div className="form-group m-3">
+                    <div className="form-group m-3">
                         <label htmlFor="fechaNacimiento" className='form-label'>Fecha de Nacimiento</label>
                         <input
                             type="date"
                             className="form-control"
                             id="fechaNacimiento"
-                            name="fecha_nac"
+                            name="fechaNacimiento"
                             value={formData.fechaNacimiento}
                             onChange={handleChange}
                             
                         />
-                    </div> */}
+                    </div>
                     <div className="form-group m-3">
                         <label htmlFor="email" className='form-label'>Email</label>
                         <input

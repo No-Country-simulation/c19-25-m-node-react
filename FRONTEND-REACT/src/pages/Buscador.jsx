@@ -1,11 +1,10 @@
-import SearchComponent from '../components/SearchComponent';
-
+import BookingSearch from "../components/BookingSearch"
 
 
 export default function Buscador() {
     return (
         <div>
-            <SearchComponent />
+            <BookingSearch />
         </div>
     )
 }
