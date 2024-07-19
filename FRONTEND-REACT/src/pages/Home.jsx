@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="min-height-vh pt-5">
       <div
-        className="d-flex flex-column justify-content-between mx-auto"
+        className="d-flex flex-column justify-content-between mx-2 mx-lg-auto"
         id="divContainerTextoYProfileHome"
       >
         <div className="d-flex align-items-center" id="imagenYUsuarioHome">
