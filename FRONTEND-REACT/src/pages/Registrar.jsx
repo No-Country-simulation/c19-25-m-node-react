@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const RegisterForm = () => {
+
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
@@ -28,7 +30,7 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:4000/usuario/registrar', formData);
+            const response = await axios.post(`${backendUrl}/usuario/registrar`, formData);
             console.log('Usuario registrado:', response.data);
             // Redireccionar al usuario a Log-in
             useNavigate('/login')
@@ -71,7 +73,7 @@ const RegisterForm = () => {
                             required
                         />
                     </div>
-                    <div className="form-group m-3">
+                    {/* <div className="form-group m-3">
                         <label htmlFor="fechaNacimiento" className='form-label'>Fecha de Nacimiento</label>
                         <input
                             type="date"
@@ -80,9 +82,9 @@ const RegisterForm = () => {
                             name="fecha_nac"
                             value={formData.fechaNacimiento}
                             onChange={handleChange}
-                            required
+                            
                         />
-                    </div>
+                    </div> */}
                     <div className="form-group m-3">
                         <label htmlFor="email" className='form-label'>Email</label>
                         <input
@@ -163,7 +165,7 @@ const RegisterForm = () => {
                     </fieldset>
 
                     <div className='container-fluid m-0 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                        <button type="submit" className="btn btn-success my-3 ">Registrar</button>
+                        <button type="submit" className="btn btn-success my-3">Registrar</button>
                     </div>
                 </form>
 
