@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const RegisterForm = () => {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
@@ -28,10 +32,10 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:4000/usuario/registrar', formData);
+            const response = await axios.post(`${backendUrl}/usuario/registrar`, formData);
             console.log('Usuario registrado:', response.data);
             // Redireccionar al usuario a Log-in
-            useNavigate('/login')
+            navigate('/login')
             
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al registrarse
@@ -77,10 +81,10 @@ const RegisterForm = () => {
                             type="date"
                             className="form-control"
                             id="fechaNacimiento"
-                            name="fecha_nac"
+                            name="fechaNacimiento"
                             value={formData.fechaNacimiento}
                             onChange={handleChange}
-                            required
+                            
                         />
                     </div>
                     <div className="form-group m-3">
@@ -163,7 +167,7 @@ const RegisterForm = () => {
                     </fieldset>
 
                     <div className='container-fluid m-0 rounded-bottom bg-secondary-subtle d-flex justify-content-end'>
-                        <button type="submit" className="btn btn-success my-3 ">Registrar</button>
+                        <button type="submit" className="btn btn-success my-3">Registrar</button>
                     </div>
                 </form>
 

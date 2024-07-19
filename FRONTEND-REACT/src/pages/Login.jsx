@@ -14,6 +14,9 @@ const Login = () => {
     const navigateToRegistro = () => {
         navigate('/registrar');
     }
+    const navigateToHome = () => {
+        navigate('/home');
+    }
 
     const [token, setToken] = useContext(AppContext)
 
@@ -32,12 +35,14 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${ backendUrl }/usuario/login`, formData);
+            const response = await axios.post(`${backendUrl}/usuario/login`, formData);
             console.log('Inicio de sesión exitoso:', response.data);
-            // Redirigir al usuario a Home
-
-            // Guardar el token en el contexto
+            // Guardar el token
             setToken(response.data.token);
+            console.log(response.data.token)
+            // Redirigir al usuario a Home
+            navigateToHome()
+            
 
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al loguearse y hacer focus en el que esté mal.
