@@ -16,7 +16,7 @@ const RegisterForm = () => {
     localidad: "",
     provincia: "",
     telefono: "",
-    fechaNacimiento: "", // Nuevo campo para la fecha de nacimiento
+    fecha_nac: "",
   });
 
   const handleChange = (e) => {
@@ -86,15 +86,15 @@ const RegisterForm = () => {
             />
           </div>
           <div className="form-group m-3">
-            <label htmlFor="fechaNacimiento" className="form-label">
+            <label htmlFor="fecha_nac" className="form-label">
               Fecha de Nacimiento
             </label>
             <input
               type="date"
               className="form-control"
-              id="fechaNacimiento"
-              name="fechaNacimiento"
-              value={formData.fechaNacimiento}
+              id="fecha_nac"
+              name="fecha_nac"
+              value={formData.fecha_nac}
               onChange={handleChange}
             />
           </div>
