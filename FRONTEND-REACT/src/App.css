@@ -72,38 +72,19 @@ color: black;
 
 
 #divContainerTextoYProfileHome{
- max-width: 720px;
- margin-top: 7%;
+ max-width: 1024px;
 }
 
 #imageProfileHome {
   max-width: 250px;
   max-height: 250px;
-}
-
-#divComponentesHome {
-  margin-top: 5%;
-}
-
-#imageProfileHome {
-  max-width: 250px;
-  max-height: 250px;
-}
-
-#divComponentesHome {
-  margin-top: 5%;
-}
-#divImageProfile{
-  max-width: 250px;
-  max-height: 250px;
-}
-#imageProfileHome {
   width: 100%;
   height: auto;
 }
 
-#divComponentesHome {
-  margin-top: 5%;
+#divImageProfile{
+  max-width: 250px;
+  max-height: 250px;
 }
 
 #imgCardAnuncio{
