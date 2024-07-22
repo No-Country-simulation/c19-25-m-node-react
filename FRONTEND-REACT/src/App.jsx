@@ -15,10 +15,24 @@ import "./App.css";
 
 
 function App() {
-  const [dataUsuario, setDataUsuario] = useState([]);
-  const [token, setToken] = useState(false)
+  
+  // Cargar valores iniciales de Local Storage
+  const initialDataUsuario = JSON.parse(localStorage.getItem("dataUsuario")) || [];
+  const initialToken = JSON.parse(localStorage.getItem("token")) || false;
 
-  console.log(token)
+  const [dataUsuario, setDataUsuario] = useState(initialDataUsuario);
+  const [token, setToken] = useState(initialToken);
+
+  // Guardar los valores en Local Storage cuando cambian
+  useEffect(() => {
+    localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));
+  }, [dataUsuario]);
+
+  useEffect(() => {
+    localStorage.setItem("token", JSON.stringify(token));
+  }, [token]);
+
+  console.log(token);
 
   return (
     <>
