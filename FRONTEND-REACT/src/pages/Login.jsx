@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '../components/Provider';
+import AppContext from '../components/AppContext';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-
 const Login = () => {
-
 
     const navigate = useNavigate();
 
@@ -18,7 +16,7 @@ const Login = () => {
         navigate('/home');
     }
 
-    const [token, setToken] = useContext(AppContext)
+    const context = useContext(AppContext);
 
     const [formData, setFormData] = useState({
         usuario: '',
@@ -38,11 +36,13 @@ const Login = () => {
             const response = await axios.post(`${backendUrl}/usuario/login`, formData);
             console.log('Inicio de sesión exitoso:', response.data);
             // Guardar el token
-            setToken(response.data.token);
+            context.setToken(true);
             console.log(response.data.token)
+            console.log(context.token)
+            //Hacer llamada a la base de datos con el token
+            context.setDataUsuario(response.data.dataUsuario)
             // Redirigir al usuario a Home
             navigateToHome()
-            
 
         } catch (error) {
             // Mostrar un pop-up que diga que ha pasado algo malo al loguearse y hacer focus en el que esté mal.

@@ -28,6 +28,7 @@ export default function Home() {
 
   return (
     <div className="min-height-vh pt-5">
+      {/* {token && <h1>El token funciona</h1>} */}
       <div
         className="d-flex flex-column justify-content-between mx-2 mx-lg-auto"
         id="divContainerTextoYProfileHome"
