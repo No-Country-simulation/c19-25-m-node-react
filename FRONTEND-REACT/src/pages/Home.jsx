@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useContext } from "react";
 import ComponenteHome1 from "../components/ComponenteHome1";
+import AppContext from "../components/Providers/AppContext";
 
 export default function Home() {
   let datosComponenteHome = [
@@ -25,6 +27,10 @@ export default function Home() {
         "Somos amantes de las mascotas y tenemos un promedio de 4.94/5 estrellas",
     },
   ];
+
+   const context = useContext(AppContext)
+
+   console.log(context.token)
 
   return (
     <div className="min-height-vh pt-5">

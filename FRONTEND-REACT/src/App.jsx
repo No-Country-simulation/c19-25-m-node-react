@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./routes/Home.jsx";
 import Login from "./routes/Login.jsx";
@@ -10,14 +10,15 @@ import Anuncios from "./pages/Anuncios.jsx";
 import Header from "./components/Header/Header.jsx";
 import FormRegistro2 from "./components/FormRegistro2.jsx";
 import Onboarding from "./pages/OnBoarding.jsx";
-import AppContext from "./components/AppContext.jsx";
+import AppContext from "./components/Providers/AppContext.jsx";
 import "./App.css";
-
+import TokenContext from "./components/Providers/TokenContext.jsx";
+import TerminosYCondiciones from "./pages/TerminosYCondiciones.jsx";
 
 function App() {
-  
   // Cargar valores iniciales de Local Storage
-  const initialDataUsuario = JSON.parse(localStorage.getItem("dataUsuario")) || [];
+  const initialDataUsuario =
+    JSON.parse(localStorage.getItem("dataUsuario")) || [];
   const initialToken = JSON.parse(localStorage.getItem("token")) || false;
 
   const [dataUsuario, setDataUsuario] = useState(initialDataUsuario);
@@ -37,10 +38,14 @@ function App() {
   return (
     <>
       <div className="marginBottomHeader">
-        <Header />
+        <TokenContext.Provider value={{ token }}>
+          <Header />
+        </TokenContext.Provider>
       </div>
       <div>
-        <AppContext.Provider value={{ dataUsuario, setDataUsuario, token, setToken }}>
+        <AppContext.Provider
+          value={{ dataUsuario, setDataUsuario, token, setToken }}
+        >
           <Routes>
             <Route path="/" element={<Onboarding />} />
             <Route path="/home" element={<Home />} />
@@ -49,6 +54,7 @@ function App() {
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/buscador" element={<Buscador />} />
             <Route path="/anuncios" element={<Anuncios />} />
+            <Route path="/terminosycondiciones" element={<TerminosYCondiciones />} />
             <Route path="/form-registro" element={<FormRegistro2 />} />
           </Routes>
         </AppContext.Provider>

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import AppContext from '../components/AppContext';
+import AppContext from '../components/Providers/AppContext';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -40,7 +40,7 @@ const Login = () => {
             console.log(response.data.token)
             console.log(context.token)
             //Hacer llamada a la base de datos con el token
-            context.setDataUsuario(response.data.dataUsuario)
+            // context.setDataUsuario(response.data.dataUsuario)
             // Redirigir al usuario a Home
             navigateToHome()
 
