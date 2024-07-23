@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import TokenContext from "../Providers/TokenContext";
+import { TokenContext } from "../Providers/TokenContext";
 
 export default function Navbar() {
   const context = useContext(TokenContext);
