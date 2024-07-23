@@ -33,8 +33,6 @@ function App() {
     localStorage.setItem("token", JSON.stringify(token));
   }, [token]);
 
-  console.log(token);
-
   return (
     <>
       <div className="marginBottomHeader">

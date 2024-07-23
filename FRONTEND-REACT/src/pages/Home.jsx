@@ -30,8 +30,6 @@ export default function Home() {
 
    const context = useContext(AppContext)
 
-   console.log(context.token)
-
   return (
     <div className="min-height-vh pt-5">
       {/* {token && <h1>El token funciona</h1>} */}

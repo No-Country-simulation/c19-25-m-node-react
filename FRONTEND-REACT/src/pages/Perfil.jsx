@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EditarDatosPerfil from '../components/EditarDatosPerfil';
-
+import AppContext from '../components/Providers/AppContext.jsx';
 
 export default function Perfil() {
     const navigate = useNavigate();
@@ -10,6 +10,12 @@ export default function Perfil() {
         navigate('/form-registro');
     };
 
+    const context = useContext(AppContext)
+
+    const cerrarSesion = () => {
+        context.setToken(false);
+        navigate('/login');
+    }
     const datosUsuario = [
         {
             imagenProfile: "https://placehold.co/250",
@@ -46,6 +52,9 @@ export default function Perfil() {
                 </div>
                 <div className='text-center '>
                     <button type="button" class="btn btn-outline-secondary fs-1" onClick={handleButtonClick}>Quiero convertirme en cuidador</button>
+                </div>
+                <div className='text-center '>
+                    <button type="button" class="btn btn-danger fs-3 my-5" onClick={cerrarSesion}>Cerrar Sesión</button>
                 </div>
             </div>
         </>
