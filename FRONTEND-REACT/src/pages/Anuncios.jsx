@@ -28,6 +28,7 @@ const Anuncios = () => {
     nombre: '', // Coger de la base de datos
     apellido: '' // Coger de la base de datos
     // imagen de perfil // Coger de la base de datos
+    // Campo cuidador
   });
 
   const handleAnuncioChange = (newAnuncio) => {

@@ -96,9 +96,13 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
 
   const handleConfirmar = async () => {
     try {
+      // Comprobar que campo cuidador es true
+      // if (campoCuidador) {
       const response = await axios.post('http://tu-backend.com/guardarDatos', anuncio);
       console.log('Datos enviados correctamente', response.data);
       returnToHome();
+      // }
+      // else {MOSTRAR MODAL CON REDIRECCIÓN A FORMREGISTRO2}
     } catch (error) {
       setError(error.message);
       console.error('Error al enviar los datos:', error);
