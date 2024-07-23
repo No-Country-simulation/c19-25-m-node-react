@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useContext } from "react";
 import ComponenteHome1 from "../components/ComponenteHome1";
+import AppContext from "../components/Providers/AppContext";
 
 export default function Home() {
   let datosComponenteHome = [
@@ -26,10 +28,13 @@ export default function Home() {
     },
   ];
 
+   const context = useContext(AppContext)
+
   return (
     <div className="min-height-vh pt-5">
+      {/* {token && <h1>El token funciona</h1>} */}
       <div
-        className="d-flex flex-column justify-content-between mx-auto"
+        className="d-flex flex-column justify-content-between mx-2 mx-lg-auto"
         id="divContainerTextoYProfileHome"
       >
         <div className="d-flex align-items-center" id="imagenYUsuarioHome">

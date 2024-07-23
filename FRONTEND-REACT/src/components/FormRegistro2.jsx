@@ -50,6 +50,7 @@ const FormRegistro2 = () => {
         if (allYes) {
             if (modalConfirmar) {
                 try {
+                    console.log(allYes)
                     const response = await axios.post('http://tu-backend.com/guardarDatos', allYes);
                     console.log('Datos enviados correctamente', response.data);
                     returnToPerfil();
