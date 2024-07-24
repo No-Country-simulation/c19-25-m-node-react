@@ -23,8 +23,15 @@ const TokenProvider = ({ children }) => {
         if (response.data && response.data.token) {
           setToken(response.data.token);
           const decodedToken = jwtDecode(response.data.token);
-          setDataUsuario(decodedToken);
-          console.log("Autenticación exitosa:", decodedToken);
+          console.log(decodedToken)
+          
+          // Hacer una llamada adicional para obtener todos los datos del usuario
+          const userResponse = await axios.get(`${backendUrl}/usuario/${decodedToken.id}`, {
+            headers: { Authorization: `Bearer ${response.data.token}` },
+          });
+          
+          setDataUsuario(userResponse.data);
+          console.log("Autenticación exitosa:", userResponse.data);
         } else {
           console.log("No se recibió token en la respuesta");
           setToken("");

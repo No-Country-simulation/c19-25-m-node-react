@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { TokenContext } from "../components/Providers/TokenContext";
 
@@ -39,8 +38,17 @@ const Login = () => {
 
       if (response.data && response.data.token) {
         setToken(response.data.token);
-        const decodedToken = jwtDecode((response.data.token));
-        setDataUsuario(decodedToken);
+        const decodedToken = jwtDecode(response.data.token);
+
+        const userResponse = await axios.get(
+          `${backendUrl}/usuario/${decodedToken.id}`,
+          {
+            headers: { Authorization: `Bearer ${response.data.token}` },
+          }
+        );
+
+        setDataUsuario(userResponse.data);
+
         console.log("Datos del usuario:", decodedToken);
         console.log("Inicio de sesión exitoso");
         navigate("/home");

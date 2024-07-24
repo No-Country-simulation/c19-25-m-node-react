@@ -16,7 +16,7 @@ const RegisterForm = () => {
     provincia: "",
     telefono: "",
     fecha_nac: "",
-    img_Perfil: "", 
+    imgperfil: "", 
   });
 
   const handleChange = (e) => {
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="imgPerfil"
+                    name="imgperfil"
                     id={avatar.id}
                     value={avatar.url}
                     onChange={handleChange}

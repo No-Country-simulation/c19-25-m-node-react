@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ModalComponent from './ModalComponent';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
   const [mostrarModalEnvio, setMostrarModalEnvio] = useState(false);
   const [error, setError] = useState('');
@@ -98,7 +101,7 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     try {
       // Comprobar que campo cuidador es true
       // if (campoCuidador) {
-      const response = await axios.post('http://tu-backend.com/guardarDatos', anuncio);
+      const response = await axios.post(`${backendUrl}/usuario/crearanuncio`, anuncio);
       console.log('Datos enviados correctamente', response.data);
       returnToHome();
       // }
