@@ -16,7 +16,7 @@ const RegisterForm = () => {
     provincia: "",
     telefono: "",
     fecha_nac: "",
-    imagen_perfil: "", // con 6 tipos de imagen
+    img_Perfil: "", 
   });
 
   const handleChange = (e) => {

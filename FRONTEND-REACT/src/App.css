@@ -52,14 +52,14 @@
 }
 
 .nav-link.active {
-  background-color: rgb(246, 231, 216);
+  background-color: #ff9e5a;
   color: black !important;
   border-radius: 5px;
   padding-left: 3%;
 }
 
 #navbarPrincipal {
-  background-color: #FDC500;
+  background-color: #007C00;
 }
 
 .nav-link {
@@ -106,6 +106,20 @@ color: black;
   border-radius: 15%;
 }
 
+.bg-azul {
+  background-color: #09055C !important;
+  color: white !important;
+}
+
+.allura {
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.fontsize-big {
+  font-size: 5.49rem;
+}
 
 
 

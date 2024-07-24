@@ -88,7 +88,7 @@ const Login = () => {
           <div className="container-fluid mt-3 rounded-bottom bg-secondary-subtle d-flex justify-content-end">
             <button
               type="button"
-              className="btn btn-primary my-3 me-4"
+              className="btn bg-azul my-3 me-4"
               onClick={navigateToRegistro}
             >
               No tengo cuenta

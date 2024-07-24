@@ -15,7 +15,7 @@ export default function Onboarding() {
             <div className="mb-5">
                 <img src="../images/photo-1450778869180-41d0601e046e.avif" alt="OnBoardingImage" className="img-fluid" />
             </div>
-            <button type="button" className="btn btn-dark fs-3" onClick={navigateToLogin}>
+            <button type="button" className="btn btn-success fs-3" onClick={navigateToLogin}>
                 Ingresar
             </button>
         </div>
