@@ -8,13 +8,14 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setToken } = useContext(TokenContext);
-  const { setDataUsuario } = useContext(TokenContext);
+  const context = useContext(TokenContext)
+
 
   const [formData, setFormData] = useState({
     usuario: "",
     password: "",
   });
+
 
   const handleChange = (e) => {
     setFormData({
@@ -37,7 +38,7 @@ const Login = () => {
       console.log(response);
 
       if (response.data && response.data.token) {
-        setToken(response.data.token);
+        context.setToken(response.data.token);
         const decodedToken = jwtDecode(response.data.token);
 
         const userResponse = await axios.get(
@@ -47,7 +48,18 @@ const Login = () => {
           }
         );
 
-        setDataUsuario(userResponse.data);
+        context.setDataUsuario(userResponse.data);
+
+
+
+
+
+
+
+
+
+
+        
 
         console.log("Datos del usuario:", decodedToken);
         console.log("Inicio de sesión exitoso");
