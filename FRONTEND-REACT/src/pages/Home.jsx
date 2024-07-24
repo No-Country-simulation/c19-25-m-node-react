@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import ComponenteHome1 from "../components/ComponenteHome1";
-import AppContext from "../components/Providers/AppContext";
+import { TokenContext } from "../components/Providers/TokenContext";
 
 export default function Home() {
+
+  const context = useContext(TokenContext);
+
   let datosComponenteHome = [
     {
       id: 1,
@@ -28,7 +31,6 @@ export default function Home() {
     },
   ];
 
-   const context = useContext(AppContext)
 
   return (
     <div className="min-height-vh pt-5">
@@ -47,7 +49,7 @@ export default function Home() {
             />
           </div>
           <h1 className="ms-2 ms-md-5">
-            Bienvenido a Yo te cuido <strong>USUARIO</strong>
+            Bienvenido a Yo te cuido <strong>{context.dataUsuario.nombre}</strong>
           </h1>
         </div>
         <div
