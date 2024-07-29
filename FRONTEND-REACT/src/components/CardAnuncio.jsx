@@ -12,7 +12,7 @@ const CardAnuncio = ({ anuncio }) => {
     .join(" y ");
 
   // Calcular la dirección con la distancia máxima
-  const direccionConDistancia = `${anuncio.direccion || 'No especificada'} (${anuncio.distanciaMaxima || 0} km)`;
+  const direccionConDistancia = `${anuncio.distanciaMaxima || 0} km, desde ${anuncio.direccion || 'No especificada'} `;
   const selectedRols = Object.keys(anuncio.selectedRols).filter((rol) => anuncio.selectedRols[rol]).join(" y ");
 
 
@@ -33,22 +33,22 @@ const CardAnuncio = ({ anuncio }) => {
           </div>
           <div className="card-body d-flex justify-content-around align-items-center">
             <div className="w-25">
-              <img src="https://placehold.co/400" className="card-img-top" alt="..." id="imgCardAnuncio" />
+              <img src={anuncio.imgperfil || "https://placehold.co/400"} className="card-img-top" alt="..." id="imgCardAnuncio" />
             </div>
-            <div className="d-flex w-75 justify-content-end">
-              <h5 className="card-title me-3">{anuncio.nombre || "Nombre"}</h5>
+            <div className="d-flex w-75 justify-content-center">
+              <h5 className="card-title me-1">{anuncio.nombre || "Nombre"}</h5>
               <h5 className="card-title">{anuncio.apellido || "Apellido"}</h5>
             </div>
           </div>
           
           <div className="card-body">
-            <p className="card-text">Disponible para cuidados en {direccionConDistancia}</p>
-            <p className="card-text">Disponible para cuidar {selectedPets}</p>
-            <p className="card-text">Disponible para {serviceOptions}</p>
-            <p className="card-text">Puedo ocupar el rol de: {selectedRols}</p>
-            <p className="card-text">Precio por hora: {anuncio.precio || 'No especificado'} <i className="fa-solid fa-dollar-sign"></i></p>
-            <p className="card-text">Fecha de inicio del servicio: {formatDateTime(anuncio.fechaInicio)}</p>
-            <p className="card-text">Fecha de fin del servicio: {formatDateTime(anuncio.fechaFin)}</p>
+            <p className="card-text">Disponible para cuidados en un radio de <strong>{direccionConDistancia}</strong></p>
+            <p className="card-text">Disponible para cuidar: <strong>{selectedPets}</strong></p>
+            <p className="card-text">Disponible para: <strong>{serviceOptions}</strong></p>
+            <p className="card-text">Puedo ocupar el rol de: <strong>{selectedRols}</strong></p>
+            <p className="card-text">Precio por hora: <strong>{anuncio.precio || 'No especificado'} <i className="fa-solid fa-dollar-sign"></i>/h</strong></p>
+            <p className="card-text">Fecha de inicio del servicio: <strong>{formatDateTime(anuncio.fechaInicio)}</strong></p>
+            <p className="card-text">Fecha de fin del servicio: <strong>{formatDateTime(anuncio.fechaFin)}</strong></p>
           </div>
           <div className="container-fluid border rounded my-2 py-2">
             <h5>Observaciones:</h5>

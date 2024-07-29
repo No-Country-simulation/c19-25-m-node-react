@@ -1,57 +1,60 @@
-import React, { useContext, useState } from 'react';
-import CrearAnuncio from '../components/CrearAnuncio';
-import CardAnuncio from '../components/CardAnuncio';
+import React, { useContext, useState } from "react";
+import CrearAnuncio from "../components/CrearAnuncio";
+import CardAnuncio from "../components/CardAnuncio";
 import { TokenContext } from "../components/Providers/TokenContext";
 
 const Anuncios = () => {
-  const context = useContext(TokenContext)
+  const context = useContext(TokenContext);
 
   const [anuncio, setAnuncio] = useState({
-    titulo: '',
-    descripcion: '',
-    precio: '',
+    titulo: "",
+    descripcion: "",
+    precio: "",
     selectedPets: {
       Perros: false,
       Gatos: false,
       Pajaros: false,
-      Peces: false
+      Peces: false,
     },
     serviceOptions: {
       Voyasudomicilio: false,
-      Soloenmidomicilio: false
+      Soloenmidomicilio: false,
     },
     selectedRols: {
       Paseador: false,
-      Cuidador: false
+      Cuidador: false,
     },
-    distanciaMaxima: '',
-    fechaInicio: '',
-    fechaFin: '',
-    direccion: '', // Coger de la base de datos
+    distanciaMaxima: "",
+    fechaInicio: "",
+    fechaFin: "",
+    direccion: context.dataUsuario.localidad, // Coger de la base de datos
     nombre: context.dataUsuario.nombre, // Coger de la base de datos
-    apellido: '' // Coger de la base de datos
-    // imagen de perfil // Coger de la base de datos
-    // Campo cuidador
+    apellido: context.dataUsuario.apellido, // Coger de la base de datos
+    imgperfil: context.dataUsuario.imgperfil,
+    cuidador: context.dataUsuario.nombrecuidador,
   });
 
   const handleAnuncioChange = (newAnuncio) => {
     setAnuncio((prevAnuncio) => ({
       ...prevAnuncio,
-      ...newAnuncio
+      ...newAnuncio,
     }));
   };
 
   return (
     <div className="container min-height-vh d-flex flex-column justify-content-center align-items-center">
-      <div className='text-start w-100 my-4'>
+      <div className="text-start w-100 my-4">
         <h2>Publica aquí tu nuevo anuncio: </h2>
       </div>
-      <div className='d-flex justify-content-between align-items-center w-100'>
-        <div className='row  mb-5'>
-          <div className='col-12 col-lg-6 my-lg-auto'>
-            <CrearAnuncio anuncio={anuncio} onAnuncioChange={handleAnuncioChange} />
+      <div className="d-flex justify-content-between align-items-center w-100">
+        <div className="row  mb-5">
+          <div className="col-12 col-lg-6 my-lg-auto">
+            <CrearAnuncio
+              anuncio={anuncio}
+              onAnuncioChange={handleAnuncioChange}
+            />
           </div>
-          <div className='col-12 col-lg-6 mt-5 my-lg-auto'>
+          <div className="col-12 col-lg-6 mt-5 my-lg-auto">
             <CardAnuncio anuncio={anuncio} />
           </div>
         </div>
