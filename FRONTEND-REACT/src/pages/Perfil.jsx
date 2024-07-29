@@ -8,7 +8,6 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export default function Perfil() {
   const navigate = useNavigate();
-
   const context = useContext(TokenContext);
 
   const datosUsuario = [
@@ -34,14 +33,15 @@ export default function Perfil() {
 
   const logout = async () => {
     try {
-      const success = await axios.post(
+      const response = await axios.post(
         `${backendUrl}/usuario/logout`,
         {},
         { withCredentials: true }
       );
-      context.setToken("");
-      context.setDataUsuario(null);
-      if (success) {
+
+      if (response.status === 200) {
+        context.setToken("");
+        context.setDataUsuario(null);
         navigate("/login");
       } else {
         alert("Hubo un problema al ejecutar cerrar sesión");
@@ -71,7 +71,7 @@ export default function Perfil() {
         <div className="text-center ">
           <button
             type="button"
-            class="btn btn-outline-secondary fs-1"
+            className="btn btn-outline-secondary fs-1"
             onClick={handleButtonClick}
           >
             Quiero convertirme en cuidador
@@ -80,7 +80,7 @@ export default function Perfil() {
         <div className="text-center ">
           <button
             type="button"
-            class="btn btn-danger fs-3 my-5"
+            className="btn btn-danger fs-3 my-5"
             onClick={logout}
           >
             Cerrar Sesión

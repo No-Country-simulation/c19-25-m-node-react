@@ -1,21 +1,18 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { TokenContext } from "../components/Providers/TokenContext";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
-  const context = useContext(TokenContext)
-
+  const context = useContext(TokenContext);
 
   const [formData, setFormData] = useState({
     usuario: "",
     password: "",
   });
-
 
   const handleChange = (e) => {
     setFormData({
@@ -37,31 +34,20 @@ const Login = () => {
       );
       console.log(response);
 
-      if (response.data && response.data.token) {
-        context.setToken(response.data.token);
-        const decodedToken = jwtDecode(response.data.token);
+      if (response.data) {
+        context.setToken(response.data._id);
 
         const userResponse = await axios.get(
-          `${backendUrl}/usuario/${decodedToken.id}`,
+          `${backendUrl}/usuario/${response.data._id}`, // Utilizar response.data._id directamente
           {
-            headers: { Authorization: `Bearer ${response.data.token}` },
+            withCredentials: true,
           }
         );
 
+        console.log(userResponse);
         context.setDataUsuario(userResponse.data);
 
-
-
-
-
-
-
-
-
-
-        
-
-        console.log("Datos del usuario:", decodedToken);
+        console.log("Datos del usuario:", userResponse.data);
         console.log("Inicio de sesión exitoso");
         navigate("/home");
       } else {

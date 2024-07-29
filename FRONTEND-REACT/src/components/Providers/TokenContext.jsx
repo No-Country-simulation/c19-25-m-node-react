@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 
 const TokenContext = createContext();
 
@@ -8,7 +7,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const TokenProvider = ({ children }) => {
   const [token, setToken] = useState("");
-  const [dataUsuario, setDataUsuario] = useState(null);
+  const [dataUsuario, setDataUsuario] = useState({});
 
   useEffect(() => {
     const verificarAutenticacion = async () => {
@@ -20,18 +19,8 @@ const TokenProvider = ({ children }) => {
 
         console.log("Respuesta recibida:", response.data);
 
-        if (response.data && response.data.token) {
-          setToken(response.data.token);
-          const decodedToken = jwtDecode(response.data.token);
-          console.log(decodedToken)
-          
-          // Hacer una llamada adicional para obtener todos los datos del usuario
-          const userResponse = await axios.get(`${backendUrl}/usuario/${decodedToken.id}`, {
-            headers: { Authorization: `Bearer ${response.data.token}` },
-          });
-          
-          setDataUsuario(userResponse.data);
-          console.log("Autenticación exitosa:", userResponse.data);
+        if (response.data) {
+          setToken(response.data._id);
         } else {
           console.log("No se recibió token en la respuesta");
           setToken("");
@@ -49,6 +38,28 @@ const TokenProvider = ({ children }) => {
 
     verificarAutenticacion();
   }, []);
+
+  useEffect(() => {
+    const obtenerDatosUsuario = async () => {
+      if (token) {
+        try {
+          const userResponse = await axios.get(
+            `${backendUrl}/usuario/${token}`,
+            {
+              withCredentials: true,
+            }
+          );
+          console.log("Datos del usuario:", userResponse.data);
+          setDataUsuario(userResponse.data);
+        } catch (error) {
+          console.error("Error al obtener datos del usuario:", error);
+          setDataUsuario(null);
+        }
+      }
+    };
+
+    obtenerDatosUsuario();
+  }, [token]);
 
   return (
     <TokenContext.Provider
