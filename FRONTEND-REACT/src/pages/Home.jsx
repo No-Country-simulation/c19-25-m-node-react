@@ -49,7 +49,7 @@ export default function Home() {
             />
           </div>
           <h1 className="ms-2 ms-md-5">
-            Bienvenido a Yo te cuido <strong>{context.dataUsuario.nombre}</strong>
+            Bienvenido a Yo te cuido <strong>{context.dataUsuario ? context.dataUsuario.nombre : 'No se ha encontrado al usuario'}</strong>
           </h1>
         </div>
         <div

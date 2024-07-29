@@ -10,22 +10,7 @@ export default function Perfil() {
   const navigate = useNavigate();
   const context = useContext(TokenContext);
 
-  const datosUsuario = [
-    {
-      imagenProfile: "https://placehold.co/250",
-      nombre: "Pepito",
-      apellido: "Palotes Canarias",
-      email: "pepitodelospalotes@gmail.com",
-      password: "Estoesunacontraseña",
-      direccion: "Avenida Falsa, 14",
-      localidad: "Cuernavaca",
-      provincia: "Buenos Aires",
-      telefono: "+54 9 11 1234 5678",
-      fecha_nac: "10/04/1995",
-    },
-  ];
-
-  const usuario = datosUsuario[0];
+  const datosUsuario = context.dataUsuario
 
   const handleButtonClick = () => {
     navigate("/form-registro");
@@ -57,15 +42,15 @@ export default function Perfil() {
         <h1>Perfil</h1>
         <div>
           <EditarDatosPerfil
-            imagenProfile={usuario.imagenProfile}
-            nombre={usuario.nombre}
-            apellido={usuario.apellido}
-            email={usuario.email}
-            direccion={usuario.direccion}
-            localidad={usuario.localidad}
-            provincia={usuario.provincia}
-            telefono={usuario.telefono}
-            fecha_nac={usuario.fecha_nac}
+            imagenProfile={datosUsuario.imgperfil}
+            nombre={datosUsuario.nombre}
+            apellido={datosUsuario.apellido}
+            email={datosUsuario.email}
+            direccion={datosUsuario.direccion}
+            localidad={datosUsuario.localidad}
+            provincia={datosUsuario.provincia}
+            telefono={datosUsuario.telefono}
+            fecha_nac={datosUsuario.fecha_nac}
           />
         </div>
         <div className="text-center ">

@@ -4,6 +4,20 @@ import axios from "axios";
 export default function EditarDatosPerfil(props) {
   const [selectedFile, setSelectedFile] = useState(null);
 
+  // Formatear la fecha de nacimiento para poder mostrarla
+
+  const formatDate = (isoString) => {
+    const date = new Date(isoString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  const formattedDate = formatDate(props.fecha_nac);
+
+  // Fin formateo de la fecha nac
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -48,7 +62,7 @@ export default function EditarDatosPerfil(props) {
         <img
           src={props.imagenProfile}
           alt={`${props.nombre} ${props.apellido}`}
-          className="m-3"
+          className="m-3 w-25"
         />
         <form onSubmit={handleSubmitEdit} className="">
           <fieldset disabled className="m-3">
@@ -131,8 +145,8 @@ export default function EditarDatosPerfil(props) {
                 type="text"
                 id="disabledTextInput"
                 className="form-control"
-                placeholder={props.fechaNacimiento}
-                value={props.fechaNacimiento}
+                placeholder={formattedDate}
+                value={formattedDate}
               />
             </div>
           </fieldset>

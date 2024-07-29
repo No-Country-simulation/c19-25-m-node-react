@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CrearAnuncio from '../components/CrearAnuncio';
 import CardAnuncio from '../components/CardAnuncio';
+import { TokenContext } from "../components/Providers/TokenContext";
 
 const Anuncios = () => {
+  const context = useContext(TokenContext)
+
   const [anuncio, setAnuncio] = useState({
     titulo: '',
     descripcion: '',
@@ -25,7 +28,7 @@ const Anuncios = () => {
     fechaInicio: '',
     fechaFin: '',
     direccion: '', // Coger de la base de datos
-    nombre: '', // Coger de la base de datos
+    nombre: context.dataUsuario.nombre, // Coger de la base de datos
     apellido: '' // Coger de la base de datos
     // imagen de perfil // Coger de la base de datos
     // Campo cuidador
