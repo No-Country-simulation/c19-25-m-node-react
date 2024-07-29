@@ -38,7 +38,7 @@ const Login = () => {
         context.setToken(response.data._id);
 
         const userResponse = await axios.get(
-          `${backendUrl}/usuario/${response.data._id}`, // Utilizar response.data._id directamente
+          `${backendUrl}/usuario/${response.data._id}`, 
           {
             withCredentials: true,
           }

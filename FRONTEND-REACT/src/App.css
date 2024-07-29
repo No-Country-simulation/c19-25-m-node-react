@@ -121,5 +121,18 @@ color: black;
   font-size: 5.49rem;
 }
 
+.bg-orange {
+  background-color: #f88230;
+}
+
+.bg-green {
+  background-color: #208720;
+}
+
+.square-250 {
+  width: 107px;
+  height: 107px;
+  object-fit: cover;
+}
 
 
