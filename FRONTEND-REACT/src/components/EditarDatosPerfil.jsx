@@ -75,23 +75,22 @@ export default function EditarDatosPerfil(props) {
                 className="form-control"
                 id="imagenProfile"
                 name="imagenProfile"
-                onChange={handleFileChange}
+                readOnly
               />
             </div>
           </fieldset>
 
           <fieldset disabled className="m-3">
             <div className="mb-3">
-              <label for="disabledTextInput" className="form-label">
+              <label for="nombreDisabled" className="form-label">
                 Nombre
               </label>
               <input
                 type="text"
-                id="disabledTextInput"
+                id="nombreDisabled"
                 className="form-control"
                 placeholder={props.nombre}
-                value={props.nombre}
-              />
+                readOnly              />
             </div>
           </fieldset>
 
@@ -110,16 +109,15 @@ export default function EditarDatosPerfil(props) {
 
           <fieldset disabled className="m-3">
             <div className="mb-3">
-              <label for="disabledTextInput" className="form-label">
+              <label for="apellidoDisabled" className="form-label">
                 Apellido
               </label>
               <input
                 type="text"
-                id="disabledTextInput"
+                id="apellidoDisabled"
                 className="form-control"
                 placeholder={props.apellido}
-                value={props.apellido}
-              />
+                readOnly              />
             </div>
           </fieldset>
 
@@ -138,16 +136,15 @@ export default function EditarDatosPerfil(props) {
 
           <fieldset disabled className="m-3">
             <div className="mb-3">
-              <label for="disabledTextInput" className="form-label">
+              <label for="fechaNacDisabled" className="form-label">
                 Fecha de Nacimiento
               </label>
               <input
                 type="text"
-                id="disabledTextInput"
+                id="fechaNacDisabled"
                 className="form-control"
                 placeholder={formattedDate}
-                value={formattedDate}
-              />
+                readOnly              />
             </div>
           </fieldset>
 
@@ -166,16 +163,15 @@ export default function EditarDatosPerfil(props) {
 
           <fieldset disabled className="m-3">
             <div className="mb-3">
-              <label for="disabledTextInput" className="form-label">
+              <label for="emailDisabled" className="form-label">
                 Email
               </label>
               <input
                 type="text"
-                id="disabledTextInput"
+                id="emailDisabled"
                 className="form-control"
                 placeholder={props.email}
-                value={props.email}
-              />
+                readOnly              />
             </div>
           </fieldset>
 

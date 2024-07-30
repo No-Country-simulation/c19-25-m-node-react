@@ -21,13 +21,16 @@ export default function Perfil() {
       const response = await axios.post(
         `${backendUrl}/usuario/logout`,
         {},
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
 
       if (response.status === 200) {
         context.setToken("");
         context.setDataUsuario(null);
         navigate("/login");
+        console.log("Logout Exitoso")
       } else {
         alert("Hubo un problema al ejecutar cerrar sesión");
       }
@@ -49,7 +52,7 @@ export default function Perfil() {
               Quiero convertirme en cuidador
             </button>
           )}
-          {!context.dataUsuario.cuidador && (
+          {context.dataUsuario.cuidador && (
             <h2 className="bg-orange w-auto p-3 rounded-3 me-3">
               Ya eres cuidador
             </h2>
