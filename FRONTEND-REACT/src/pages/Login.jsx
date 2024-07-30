@@ -14,15 +14,20 @@ const Login = () => {
     password: "",
   });
 
+  const [error, setError] = useState(""); // Estado para manejar el mensaje de error
+  const [loading, setLoading] = useState(false); // Estado para manejar el modal de carga
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(""); // Resetear el error cuando el usuario escribe
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Mostrar el modal de carga
     try {
       const response = await axios.post(
         `${backendUrl}/usuario/login`,
@@ -54,7 +59,13 @@ const Login = () => {
         console.error("No se recibió el token en la respuesta");
       }
     } catch (error) {
-      console.error("Error iniciando sesión:", error);
+      if (error.response && error.response.status === 401) {
+        setError("No se ha podido encontrar el usuario o la contraseña"); // Establecer el mensaje de error
+      } else {
+        console.error("Error iniciando sesión:", error);
+      }
+    } finally {
+      setLoading(false); // Ocultar el modal de carga
     }
   };
 
@@ -67,6 +78,11 @@ const Login = () => {
       <h2 className="mb-4">Inicio de Sesión:</h2>
       <div className="container max-w-720 border rounded p-0">
         <form onSubmit={handleSubmit} className="mt-2" id="logInForm">
+          {error && (
+            <div className="alert alert-danger mx-3 my-2">
+              {error}
+            </div>
+          )}
           <div className="form-group m-3">
             <label htmlFor="usuario">Usuario</label>
             <input
@@ -105,6 +121,19 @@ const Login = () => {
           </div>
         </form>
       </div>
+      {loading && (
+        <div className="modal show" style={{ display: "block" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body d-flex justify-content-center align-items-center">
+                <div className="spinner-border text-success" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

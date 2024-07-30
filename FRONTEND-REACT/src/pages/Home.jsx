@@ -51,7 +51,7 @@ export default function Home() {
             />
           </div>
           <h1 className="ms-2 ms-md-5 fontsize-big text-center bg-orange p-4 rounded-5">
-            Bienvenido a Yo te cuido{" "}
+            Bienvenido a Yo lo cuido{" "}
             <strong>
               {context.dataUsuario
                 ? context.dataUsuario.nombre

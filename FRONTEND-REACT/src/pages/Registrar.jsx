@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
+  const emailRef = useRef(null); // Referencia para el campo de correo electrónico
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -16,19 +17,24 @@ const RegisterForm = () => {
     provincia: "",
     telefono: "",
     fecha_nac: "",
-    imgperfil: "", 
+    imgperfil: "",
   });
+
+  const [error, setError] = useState(""); // Estado para manejar el mensaje de error
+  const [loading, setLoading] = useState(false); // Estado para manejar el modal de carga
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(""); // Resetear el error cuando el usuario escribe
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Datos del formulario:", formData); // Verifica los datos del formulario antes de enviarlos
+    setLoading(true); // Mostrar el modal de carga
 
     try {
       console.log("Intentando registrar usuario...");
@@ -42,12 +48,15 @@ const RegisterForm = () => {
       // Redireccionar al usuario a Log-in
       navigate("/login");
     } catch (error) {
-      console.log("Error al registrar usuario");
+      setLoading(false); // Ocultar el modal de carga
+      if (error.response && error.response.status === 403) {
+        setError("El email ya ha sido registrado");
+        emailRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll hacia el campo del correo electrónico
 
-      // Mostrar un pop-up que diga que ha pasado algo malo al registrarse
-      alert("Hubo un problema al registrar el usuario. Inténtelo nuevamente.");
-
-      // Imprimir en terminal
+        emailRef.current.focus(); // Hacer focus en el campo del correo electrónico
+      } else {
+        setError("Hubo un problema al registrar el usuario. Inténtelo nuevamente.");
+      }
       console.error("Error registrando el usuario:", error);
     }
   };
@@ -60,12 +69,16 @@ const RegisterForm = () => {
       </h4>
       <div className="border rounded p-0 mb-4 mt-3">
         <form onSubmit={handleSubmit} className="">
-          {/* Campos de texto del formulario */}
+          {error && (
+            <div className="alert alert-danger mx-3 my-2">
+              {error}
+            </div>
+          )}
           {[
             { id: "nombre", label: "Nombre", type: "text" },
             { id: "apellido", label: "Apellido", type: "text" },
             { id: "fecha_nac", label: "Fecha de Nacimiento", type: "date" },
-            { id: "email", label: "Email", type: "email" },
+            { id: "email", label: "Email", type: "email", ref: emailRef },
             { id: "password", label: "Password", type: "password" },
             { id: "direccion", label: "Dirección", type: "text" },
             { id: "localidad", label: "Localidad", type: "text" },
@@ -83,12 +96,12 @@ const RegisterForm = () => {
                 name={field.id}
                 value={formData[field.id]}
                 onChange={handleChange}
+                ref={field.ref} // Asignar la referencia si existe
                 required
               />
             </div>
           ))}
 
-          {/* Campo de selección de imagen de perfil */}
           <div className="form-group m-3">
             <label htmlFor="imgPerfil" className="form-label">
               Imagen de Perfil
@@ -165,6 +178,19 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
+      {loading && (
+        <div className="modal show" style={{ display: "block" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body d-flex justify-content-center align-items-center">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
