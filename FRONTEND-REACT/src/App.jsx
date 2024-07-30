@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './routes/Home.jsx';
 import Login from './routes/Login.jsx';
 import Perfil from './routes/Perfil.jsx';
@@ -12,31 +12,29 @@ import Onboarding from './pages/OnBoarding.jsx';
 import './App.css';
 import { TokenProvider } from './components/Providers/TokenContext.jsx';
 import TerminosYCondiciones from './pages/TerminosYCondiciones.jsx';
-import { useState, useEffect } from 'react';
 
 function App() {
-
   return (
-    <>
-      <TokenProvider>
+    <TokenProvider>
+      <Router>
         <div className="marginBottomHeader">
           <Header />
         </div>
         <div>
-            <Routes>
-              <Route path="/" element={<Onboarding />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/perfil" element={<Perfil />} />
-              <Route path="/registrar" element={<Registrar />} />
-              <Route path="/buscador" element={<Buscador />} />
-              <Route path="/anuncios" element={<Anuncios />} />
-              <Route path="/terminosycondiciones" element={<TerminosYCondiciones />} />
-              <Route path="/form-registro" element={<FormRegistro2 />} />
-            </Routes>
+          <Routes>
+            <Route path="/" element={<Onboarding />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/registrar" element={<Registrar />} />
+            <Route path="/buscador" element={<Buscador />} />
+            <Route path="/anuncios" element={<Anuncios />} />
+            <Route path="/terminosycondiciones" element={<TerminosYCondiciones />} />
+            <Route path="/form-registro" element={<FormRegistro2 />} />
+          </Routes>
         </div>
-      </TokenProvider>
-    </>
+      </Router>
+    </TokenProvider>
   );
 }
 
