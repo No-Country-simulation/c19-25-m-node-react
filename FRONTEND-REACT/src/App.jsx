@@ -15,26 +15,26 @@ import TerminosYCondiciones from './pages/TerminosYCondiciones.jsx';
 
 function App() {
   return (
-    <TokenProvider>
-      <Router>
+    <>
+      <TokenProvider>
         <div className="marginBottomHeader">
           <Header />
         </div>
         <div>
-          <Routes>
-            <Route path="/" element={<Onboarding />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/registrar" element={<Registrar />} />
-            <Route path="/buscador" element={<Buscador />} />
-            <Route path="/anuncios" element={<Anuncios />} />
-            <Route path="/terminosycondiciones" element={<TerminosYCondiciones />} />
-            <Route path="/form-registro" element={<FormRegistro2 />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Onboarding />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/perfil" element={<Perfil />} />
+              <Route path="/registrar" element={<Registrar />} />
+              <Route path="/buscador" element={<Buscador />} />
+              <Route path="/anuncios" element={<Anuncios />} />
+              <Route path="/terminosycondiciones" element={<TerminosYCondiciones />} />
+              <Route path="/form-registro" element={<FormRegistro2 />} />
+            </Routes>
         </div>
-      </Router>
-    </TokenProvider>
+      </TokenProvider>
+    </>
   );
 }
 
