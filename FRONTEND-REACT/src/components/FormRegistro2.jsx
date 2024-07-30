@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ModalComponent from "./ModalComponent";
 import { TokenContext } from "./Providers/TokenContext";
+import Confetti from "react-confetti";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -71,8 +72,8 @@ const FormRegistro2 = () => {
   const navigate = useNavigate();
 
   const returnToPerfil = () => {
-    navigate("/perfil");
-  };
+    navigate("/perfil", { state: { scrollToTop: true } });
+};
 
   const handleSwitchChange = (index) => (event) => {
     const newSwitches = [...switches];
@@ -88,6 +89,24 @@ const FormRegistro2 = () => {
     setModalConfirmar(true);
     saveToDatabase();
   };
+
+  const [showCongratulations, setShowCongratulations] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const saveToDatabase = async () => {
     const allYes = switches.every(
@@ -111,9 +130,9 @@ const FormRegistro2 = () => {
           );
 
           console.log("Datos enviados correctamente", response.data);
-          // Actualizar el contexto si es necesario
           context.setDataUsuario(response.data.usuario);
-          returnToPerfil();
+          setMostrarModalEnvio(false)
+          setShowCongratulations(true);
         } catch (error) {
           setErrorForm2(error.message);
           console.error("Error al enviar los datos:", error);
@@ -122,6 +141,11 @@ const FormRegistro2 = () => {
     } else {
       alert('Por favor, responde todas las preguntas con "Sí" para enviar.');
     }
+  };
+
+  const handleContinue = () => {
+    setShowCongratulations(false);
+    returnToPerfil();
   };
 
   let buttonOrMessage;
@@ -190,6 +214,25 @@ const FormRegistro2 = () => {
           onClickEnviar={handleConfirmar}
           botonEnviar="Enviar Formulario"
         />
+      )}
+
+      {showCongratulations && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+          style={{ zIndex: 1050, backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <Confetti
+            width={windowDimensions.width}
+            height={windowDimensions.height}
+          />
+          <div className="bg-white p-5 rounded text-center">
+            <h2>¡Enhorabuena!</h2>
+            <p className="fs-4">Ya eres cuidador</p>
+            <button className="btn btn-primary mt-3" onClick={handleContinue}>
+              Continuar
+            </button>
+          </div>
+        </div>
       )}
     </>
   );
