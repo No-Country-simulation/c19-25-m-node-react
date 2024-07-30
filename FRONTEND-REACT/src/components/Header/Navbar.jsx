@@ -1,13 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TokenContext } from "../Providers/TokenContext";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa Bootstrap JS si no está ya importado en tu proyecto
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Importa Bootstrap JS si no está ya importado en tu proyecto
 
 export default function Navbar() {
   const context = useContext(TokenContext);
   const location = useLocation();
   const navbarCollapseRef = useRef(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const navigate = useNavigate()
 
   const handleLinkClick = () => {
     if (navbarCollapseRef.current && window.innerWidth < 992) {
@@ -33,9 +34,13 @@ export default function Navbar() {
     }
   };
 
+  const navigateToHome = () => {
+    navigate("/home");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg py-1" id="navbarPrincipal">
-      <div className="container-fluid d-flex justify-content-between">
+      <div className="container-fluid d-flex justify-content-between align-items-center">
         <button
           className="navbar-toggler custom-toggler"
           type="button"
@@ -47,9 +52,17 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <span className="fs-3 ms-2">
-          <strong>Yo lo cuido</strong>
-        </span>
+        <div className="m-0 p-0 d-flex align-items-center" onClick={navigateToHome}>
+          <img
+            src="https://i.imgur.com/tOcMxTW.png"
+            alt="logo Yo lo cuido"
+            className="my-2 me-3 p-0 imgNavbar"
+          />
+          <span className="fs-3 ms-2">
+            <strong>Yo lo cuido</strong>
+          </span>
+        </div>
+
         <div
           className="collapse navbar-collapse text-lg-center ms-2 p-0 row"
           id="navbarNav"

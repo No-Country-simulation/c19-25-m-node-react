@@ -31,13 +31,13 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-height-vh pt-5 mt-5">
+    <div className="min-height-vh pt-5 mt-5  ">
       {/* {token && <h1>El token funciona</h1>} */}
       <div
         className="d-flex flex-column justify-content-between mx-2 mx-lg-auto"
         id="divContainerTextoYProfileHome"
       >
-        <div className="d-flex align-items-center" id="imagenYUsuarioHome">
+        <div className="d-flex align-items-center max-w-720 mx-auto" id="imagenYUsuarioHome">
           <div id="divImageProfile">
             <img
               src={
@@ -50,28 +50,28 @@ export default function Home() {
               id="imageProfileHome"
             />
           </div>
-          <h1 className="ms-2 ms-md-5 fontsize-big text-center bg-orange p-4 rounded-5">
+          <h2 className="ms-2 ms-md-5 fontsize-big text-center bg-orange p-4 rounded-5">
             Bienvenido a Yo lo cuido{" "}
             <strong>
               {context.dataUsuario
                 ? context.dataUsuario.nombre
                 : "No se ha encontrado al usuario"}
             </strong>
-          </h1>
+          </h2>
         </div>
         <div
-          className="d-flex flex-column align-items-center align-items-md-center text-center ms-0 mt-5 bg-orange rounded-5 p-3"
+          className="d-flex flex-column align-items-center align-items-md-center text-center mt-5 bg-orange rounded-5 p-3 max-w-720 mx-auto"
           id="textoDescripcion"
         >
-          <h3>Un poco sobre nosotros:</h3>
+          <h3 className="fs-2">Un poco sobre nosotros:</h3>
           <hr className="w-50" />
-          <h4>
+          <h4 className="fs-4">
             En Yo te Cuido podrás encontrar encontrar a personas que se
             preocupen por tu mascota
           </h4>
         </div>
-        <div className="d-flex flex-column align-items-center align-items-md-center text-center ms-0 mt-5 bg-orange rounded-4 p-3">
-          <h5>
+        <div className="d-flex flex-column align-items-center align-items-md-center text-center mt-5 bg-orange rounded-4 p-3 max-w-720 mx-auto">
+          <h5 className="fs-5">
             Ponemos en contacto a personas que necesitan cuidado para sus
             mascotas con cuidadores especializados.
           </h5>
