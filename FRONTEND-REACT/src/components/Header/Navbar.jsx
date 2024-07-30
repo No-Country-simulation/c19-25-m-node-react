@@ -58,7 +58,7 @@ export default function Navbar() {
             alt="logo Yo lo cuido"
             className="my-2 me-3 p-0 imgNavbar"
           />
-          <span className="fs-3 ms-2">
+          <span className="fs-4 ms-2">
             <strong>Yo lo cuido</strong>
           </span>
         </div>
