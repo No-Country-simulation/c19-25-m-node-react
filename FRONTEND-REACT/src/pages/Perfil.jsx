@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditarDatosPerfil from "../components/EditarDatosPerfil";
 import { TokenContext } from "../components/Providers/TokenContext";
 import axios from "axios";
+import ModalComponent from "../components/ModalComponent";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export default function Perfil() {
   const navigate = useNavigate();
   const context = useContext(TokenContext);
+  const [showLogoutModal, setShowLogoutModal] = useState(false); 
 
   const datosUsuario = context.dataUsuario;
+
+  useEffect(() =>{
+    if (!context.token){
+      navigate('/login')
+    }
+  }, [context.token, navigate]);
 
   const handleButtonClick = () => {
     navigate("/form-registro");
@@ -39,9 +47,22 @@ export default function Perfil() {
     }
   };
 
+  const handleLogoutConfirmation = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleModalConfirm = () => {
+    logout();
+    setShowLogoutModal(false);
+  };
+
   return (
     <>
-      <div className="container mb-5 mt-3 min-height-vh ">
+      <div className="container mb-5 mt-3 min-height-vh">
         <div className="text-end mb-4 d-flex justify-content-end align-items-center">
           {!context.dataUsuario.cuidador && (
             <button
@@ -60,7 +81,7 @@ export default function Perfil() {
           <button
             type="button"
             className="btn btn-warning fs-5"
-            onClick={logout}
+            onClick={handleLogoutConfirmation} // Abre el modal de confirmación
           >
             Cerrar Sesión
           </button>
@@ -80,6 +101,19 @@ export default function Perfil() {
           />
         </div>
       </div>
+      {showLogoutModal && (
+        <ModalComponent
+          idModal="logoutModal"
+          classNameModal="modal fade"
+          tittleModal="Confirmar Cierre de Sesión"
+          bodyModal="¿Estás seguro de que quieres cerrar sesión?"
+          classNameBotonCerrar="btn btn-success"
+          botonCerrar="Cancelar"
+          classNameBotonEnviar="btn btn-danger"
+          botonEnviar="Confirmar"
+          onClickEnviar={handleModalConfirm} 
+        />
+      )}
     </>
   );
 }

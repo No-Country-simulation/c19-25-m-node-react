@@ -3,10 +3,11 @@ import CrearAnuncio from "../components/CrearAnuncio";
 import CardAnuncio from "../components/CardAnuncio";
 import { TokenContext } from "../components/Providers/TokenContext";
 import { useNavigate } from "react-router-dom";
+import ModalComponent from "../components/ModalComponent";
 
 const Anuncios = () => {
   const context = useContext(TokenContext);
-  const navigate = useNavigate(); // Usa useNavigate en lugar de useHistory
+  const navigate = useNavigate();
 
   const [anuncio, setAnuncio] = useState({
     titulo: "",
@@ -47,19 +48,19 @@ const Anuncios = () => {
     if (!context.token) {
       setModalContent({
         title: "Usuario no logueado",
-        message:
-          "No estás logueado. Por favor, inicia sesión para publicar un anuncio.",
-        messageButton: "Ir a Login",
+        message: "No estás logueado. Por favor, inicia sesión para publicar un anuncio.",
         redirect: "/login",
+        messageButton: "Ir a Login",
+
       });
       setShowModal(true);
     } else if (!context.dataUsuario.cuidador) {
       setModalContent({
         title: "No eres cuidador",
-        message:
-          "Todavía no eres cuidador. Por favor, completa el formulario para hacerte cuidador.",
-        messageButton: "Hacerme Cuidador",
+        message: "Todavía no eres cuidador. Por favor, completa el formulario para hacerte cuidador.",
         redirect: "/form-registro",
+        messageButton: "Hacerme Cuidador",
+
       });
       setShowModal(true);
     }
@@ -72,9 +73,8 @@ const Anuncios = () => {
     }));
   };
 
-  const handleClose = () => {
-    setShowModal(false);
-    navigate(modalContent.redirect); // Usa navigate en lugar de history.push
+  const handleModalConfirm = () => {
+    navigate(modalContent.redirect);
   };
 
   return (
@@ -85,10 +85,7 @@ const Anuncios = () => {
       <div className="d-flex justify-content-between align-items-center w-100">
         <div className="row mb-5">
           <div className="col-12 col-lg-6 my-lg-auto">
-            <CrearAnuncio
-              anuncio={anuncio}
-              onAnuncioChange={handleAnuncioChange}
-            />
+            <CrearAnuncio anuncio={anuncio} onAnuncioChange={handleAnuncioChange} />
           </div>
           <div className="col-12 col-lg-6 mt-5 my-lg-auto">
             <CardAnuncio anuncio={anuncio} />
@@ -97,36 +94,15 @@ const Anuncios = () => {
       </div>
 
       {showModal && (
-        <div
-          className="modal fade show"
-          style={{ display: "block" }}
-          tabIndex="-1"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{modalContent.title}</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleClose}
-                />
-              </div>
-              <div className="modal-body">
-                <p>{modalContent.message}</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleClose}
-                >
-                  {modalContent.messageButton}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ModalComponent
+          idModal="userCheckModal"
+          classNameModal="modal fade show"
+          tittleModal={modalContent.title}
+          bodyModal={modalContent.message}
+          classNameBotonEnviar="btn btn-outline-success"
+          botonEnviar={modalContent.messageButton}
+          onClickEnviar={handleModalConfirm}
+        />
       )}
     </div>
   );
