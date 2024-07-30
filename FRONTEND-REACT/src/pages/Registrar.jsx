@@ -55,7 +55,9 @@ const RegisterForm = () => {
 
         emailRef.current.focus(); // Hacer focus en el campo del correo electrónico
       } else {
-        setError("Hubo un problema al registrar el usuario. Inténtelo nuevamente.");
+        setError(
+          "Hubo un problema al registrar el usuario. Inténtelo nuevamente."
+        );
       }
       console.error("Error registrando el usuario:", error);
     }
@@ -63,17 +65,17 @@ const RegisterForm = () => {
 
   return (
     <div className="container mt-3">
-      <h2 className="mb-4">¡Hola!</h2>
-      <h4 className="ms-2">
-        Te invitamos a registrarte y formar parte de nuestra comunidad:
-      </h4>
+
+      <div className="bg-orange rounded-4 p-4 m-4">
+        <h2 className="mb-4 fs-1">¡Hola!</h2>
+        <h4 className="ms-2 fs-3">
+          Te invitamos a registrarte y formar parte de nuestra comunidad:
+        </h4>
+      </div>
+
       <div className="border rounded p-0 mb-4 mt-3">
         <form onSubmit={handleSubmit} className="">
-          {error && (
-            <div className="alert alert-danger mx-3 my-2">
-              {error}
-            </div>
-          )}
+          {error && <div className="alert alert-danger mx-3 my-2">{error}</div>}
           {[
             { id: "nombre", label: "Nombre", type: "text" },
             { id: "apellido", label: "Apellido", type: "text" },

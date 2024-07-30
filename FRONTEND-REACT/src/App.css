@@ -3,6 +3,7 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  color: #010B40;
 }
 
 #containerLogin {
@@ -52,7 +53,7 @@
 }
 
 .nav-link.active {
-  background-color: #ff9e5a;
+  background-color: #f88230;
   color: black !important;
   border-radius: 5px;
   padding-left: 3%;

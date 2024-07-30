@@ -10,7 +10,7 @@ export default function Perfil() {
   const navigate = useNavigate();
   const context = useContext(TokenContext);
 
-  const datosUsuario = context.dataUsuario
+  const datosUsuario = context.dataUsuario;
 
   const handleButtonClick = () => {
     navigate("/form-registro");
@@ -38,7 +38,30 @@ export default function Perfil() {
 
   return (
     <>
-      <div className="container mb-5 mt-3 min-height-vh">
+      <div className="container mb-5 mt-3 min-height-vh ">
+        <div className="text-end mb-4 d-flex justify-content-end align-items-center">
+          {!context.dataUsuario.cuidador && (
+            <button
+              type="button"
+              className="btn btn-outline-success fs-3 me-3"
+              onClick={handleButtonClick}
+            >
+              Quiero convertirme en cuidador
+            </button>
+          )}
+          {!context.dataUsuario.cuidador && (
+            <h2 className="bg-orange w-auto p-3 rounded-3 me-3">
+              Ya eres cuidador
+            </h2>
+          )}
+          <button
+            type="button"
+            className="btn btn-warning fs-5"
+            onClick={logout}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
         <h1>Perfil</h1>
         <div>
           <EditarDatosPerfil
@@ -52,24 +75,6 @@ export default function Perfil() {
             telefono={datosUsuario.telefono}
             fecha_nac={datosUsuario.fecha_nac}
           />
-        </div>
-        <div className="text-center ">
-          <button
-            type="button"
-            className="btn btn-outline-secondary fs-1"
-            onClick={handleButtonClick}
-          >
-            Quiero convertirme en cuidador
-          </button>
-        </div>
-        <div className="text-center ">
-          <button
-            type="button"
-            className="btn btn-danger fs-3 my-5"
-            onClick={logout}
-          >
-            Cerrar Sesión
-          </button>
         </div>
       </div>
     </>
