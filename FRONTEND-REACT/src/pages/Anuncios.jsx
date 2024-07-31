@@ -79,7 +79,7 @@ const Anuncios = () => {
 
   return (
     <div className="container min-height-vh d-flex flex-column justify-content-center align-items-center">
-      <div className="text-start w-100 my-4">
+      <div className="text-start w-100 my-4 bg-orange w-auto p-3 rounded-4">
         <h2>Publica aquí tu nuevo anuncio: </h2>
       </div>
       <div className="d-flex justify-content-between align-items-center w-100">
