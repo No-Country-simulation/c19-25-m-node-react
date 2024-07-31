@@ -48,19 +48,19 @@ const Anuncios = () => {
     if (!context.token) {
       setModalContent({
         title: "Usuario no logueado",
-        message: "No estás logueado. Por favor, inicia sesión para publicar un anuncio.",
+        message:
+          "No estás logueado. Por favor, inicia sesión para publicar un anuncio.",
         redirect: "/login",
         messageButton: "Ir a Login",
-
       });
       setShowModal(true);
     } else if (!context.dataUsuario.cuidador) {
       setModalContent({
-        title: "No eres cuidador",
-        message: "Todavía no eres cuidador. Por favor, completa el formulario para hacerte cuidador.",
+        title: "Ups, parece que nos falta un paso",
+        message:
+          "No te tenemos registrado como paseador/-a o cuidador/-a. Necesitamos hacerte unas preguntas antes de poder crear un anuncio.",
         redirect: "/form-registro",
-        messageButton: "Hacerme Cuidador",
-
+        messageButton: "Convertirme en Cuidador",
       });
       setShowModal(true);
     }
@@ -85,7 +85,10 @@ const Anuncios = () => {
       <div className="d-flex justify-content-between align-items-center w-100">
         <div className="row mb-5">
           <div className="col-12 col-lg-6 my-lg-auto">
-            <CrearAnuncio anuncio={anuncio} onAnuncioChange={handleAnuncioChange} />
+            <CrearAnuncio
+              anuncio={anuncio}
+              onAnuncioChange={handleAnuncioChange}
+            />
           </div>
           <div className="col-12 col-lg-6 mt-5 my-lg-auto">
             <CardAnuncio anuncio={anuncio} />

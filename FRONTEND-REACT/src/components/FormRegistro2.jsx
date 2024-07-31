@@ -68,6 +68,11 @@ const FormRegistro2 = () => {
   const [mostrarModalEnvio, setMostrarModalEnvio] = useState(false);
   const [errorForm2, setErrorForm2] = useState("");
   const [loading, setLoading] = useState(false); // Estado para manejar el spinner
+  const [showCongratulations, setShowCongratulations] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const navigate = useNavigate();
 
@@ -92,11 +97,7 @@ const FormRegistro2 = () => {
     setLoading(false); // Ocultar el spinner después de la solicitud
   };
 
-  const [showCongratulations, setShowCongratulations] = useState(false);
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -140,7 +141,7 @@ const FormRegistro2 = () => {
     } else {
       alert('Por favor, responde todas las preguntas con "Sí" para enviar.');
     }
-  };
+  }
 
   const handleContinue = () => {
     setShowCongratulations(false);

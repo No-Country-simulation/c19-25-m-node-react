@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Confetti from "react-confetti";
 
 const RegisterForm = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -22,6 +23,11 @@ const RegisterForm = () => {
 
   const [error, setError] = useState(""); // Estado para manejar el mensaje de error
   const [loading, setLoading] = useState(false); // Estado para manejar el modal de carga
+  const [showCongratulations, setShowCongratulations] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -29,6 +35,23 @@ const RegisterForm = () => {
       [e.target.name]: e.target.value,
     });
     setError(""); // Resetear el error cuando el usuario escribe
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleContinue = () => {
+    setShowCongratulations(false);
+    navigate("/login");
   };
 
   const handleSubmit = async (e) => {
@@ -44,9 +67,9 @@ const RegisterForm = () => {
       );
       console.log("Respuesta del servidor:", response); // Verifica la respuesta del servidor
       console.log("Usuario registrado:", response.data);
-
-      // Redireccionar al usuario a Log-in
-      navigate("/login");
+      // Congratulations
+      setLoading(false)
+      setShowCongratulations(true);
     } catch (error) {
       setLoading(false); // Ocultar el modal de carga
       if (error.response && error.response.status === 403) {
@@ -65,7 +88,6 @@ const RegisterForm = () => {
 
   return (
     <div className="container mt-3">
-
       <div className="bg-orange rounded-4 p-4 m-4">
         <h2 className="mb-4 fs-1">¡Hola!</h2>
         <h4 className="ms-2 fs-3">
@@ -193,6 +215,26 @@ const RegisterForm = () => {
           </div>
         </div>
       )}
+
+      {showCongratulations && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+          style={{ zIndex: 1050, backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <Confetti
+            width={windowDimensions.width}
+            height={windowDimensions.height}
+          />
+          <div className="bg-white p-5 rounded text-center">
+            <h2>¡Enhorabuena!</h2>
+            <p className="fs-4">Ya eres un usuario de <strong>YO LO CUIDO</strong></p>
+            <button className="btn bg-azul mt-3" onClick={handleContinue}>
+              Continuar
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
