@@ -13,6 +13,7 @@ import "./App.css";
 import { TokenProvider } from "./components/Providers/TokenContext.jsx";
 import TerminosYCondiciones from "./pages/TerminosYCondiciones.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
+import ScrollToTopButton from "./components/ScrollToTop/ScrollToTopButton.jsx";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/form-registro" element={<FormRegistro2 />} />
           </Routes>
         </div>
+        <ScrollToTopButton />
         <ScrollToTop />
       </TokenProvider>
     </>

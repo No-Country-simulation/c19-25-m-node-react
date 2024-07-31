@@ -55,8 +55,8 @@ export default function EditarDatosPerfil(props) {
 
   return (
     <div className="container mt-3">
-      <h2 className="mb-4">
-        ¡Hola {props.nombre}, aquí puedes cambiar algunos datos de tu perfil.
+      <h2 className="mb-4 bg-orange rounded-3 p-3">
+        ¡Hola {props.nombre}, si lo deseas, aquí puedes cambiar algunos datos de tu perfil.
       </h2>
       <div className="border rounded p-0 mb-4 mt-3">
         <img
