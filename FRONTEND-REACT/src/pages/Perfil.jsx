@@ -64,7 +64,7 @@ export default function Perfil() {
     <>
       <div className="container mb-5 mt-3 min-height-vh">
         <div className="text-end mb-4 d-flex justify-content-end align-items-center">
-          {!context.dataUsuario.cuidador && (
+          {context.dataUsuario.cuidador && (
             <button
               type="button"
               className="btn btn-outline-success fs-3 me-3"
@@ -74,7 +74,7 @@ export default function Perfil() {
             </button>
           )}
           {context.dataUsuario.cuidador && (
-            <h2 className="bg-orange w-auto p-3 rounded-3 me-3">
+            <h2 className="bg-orange w-auto p-1 p-lg-3 rounded-3 me-3">
               Ya eres cuidador
             </h2>
           )}

@@ -73,7 +73,7 @@ const FormRegistro2 = () => {
 
   const returnToPerfil = () => {
     navigate("/perfil", { state: { scrollToTop: true } });
-};
+  };
 
   const handleSwitchChange = (index) => (event) => {
     const newSwitches = [...switches];
@@ -131,7 +131,7 @@ const FormRegistro2 = () => {
 
           console.log("Datos enviados correctamente", response.data);
           context.setDataUsuario(response.data.usuario);
-          setMostrarModalEnvio(false)
+          setMostrarModalEnvio(false);
           setShowCongratulations(true);
         } catch (error) {
           setErrorForm2(error.message);
@@ -151,12 +151,11 @@ const FormRegistro2 = () => {
   let buttonOrMessage;
   if (switches.every((switchItem) => switchItem.isChecked)) {
     buttonOrMessage = (
-      <button
-        className="btn btn-success mt-3 fs-4 mb-4"
-        onClick={showModalEnvio}
-      >
-        Enviar
-      </button>
+      <div className="d-flex justify-content-center align-items-center">
+        <button className="btn bg-azul mt-3 fs-4 mb-4" onClick={showModalEnvio}>
+          Enviar
+        </button>
+      </div>
     );
   } else {
     buttonOrMessage = (
@@ -168,11 +167,12 @@ const FormRegistro2 = () => {
 
   return (
     <>
-      <div className="mx-3 container min-height-vh my-3">
-        <div>
-          <h2 className="my-4">
-            Para poder publicar un anuncio necesitamos que respondas seriamente
-            a estas preguntas:
+      <div className="mx-3 container min-height-vh my-3 mx-auto">
+        <div className="text-center bg-orange p-3 rounded-3 my-3">
+          <h2 className="fs-1">
+            {context.dataUsuario.nombre || "No se ha encontrado el usuario"} necesitamos hacerte unas preguntas antes de poder nombrarte <strong>paseador/cuidador</strong>. 
+            <br />
+            Te pedimos por favor que leas atentamente todas las preguntas.
           </h2>
         </div>
         <div className="border rounded px-3">
@@ -227,8 +227,8 @@ const FormRegistro2 = () => {
           />
           <div className="bg-white p-5 rounded text-center">
             <h2>¡Enhorabuena!</h2>
-            <p className="fs-4">Ya eres cuidador</p>
-            <button className="btn btn-primary mt-3" onClick={handleContinue}>
+            <p className="fs-4">Te has convertido en cuidador</p>
+            <button className="btn bg-azul mt-3" onClick={handleContinue}>
               Continuar
             </button>
           </div>

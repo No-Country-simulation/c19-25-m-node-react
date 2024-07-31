@@ -53,11 +53,12 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="m-0 p-0 d-flex align-items-center" onClick={navigateToHome}>
+          {location.pathname !== "/" && 
           <img
             src="https://i.imgur.com/tOcMxTW.png"
             alt="logo Yo lo cuido"
             className="my-2 me-3 p-0 imgNavbar"
-          />
+          />}
           <span className="fs-4 ms-2">
             <strong>Yo lo cuido</strong>
           </span>
