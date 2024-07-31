@@ -57,9 +57,9 @@ export default function Navbar() {
           <img
             src="https://i.imgur.com/tOcMxTW.png"
             alt="logo Yo lo cuido"
-            className="my-2 me-3 p-0 imgNavbar"
+            className="my-2 me-3 p-0 imgNavbar cursor-pointer"
           />}
-          <span className="fs-4 ms-2">
+          <span className="fs-4 ms-2 cursor-pointer">
             <strong>Yo lo cuido</strong>
           </span>
         </div>

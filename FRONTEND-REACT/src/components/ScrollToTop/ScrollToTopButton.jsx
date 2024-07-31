@@ -6,7 +6,7 @@ const ScrollToTopButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > 100) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -23,7 +23,7 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: "auto",
     });
   };
 

@@ -276,7 +276,7 @@ export default function EditarDatosPerfil(props) {
 
           <div className="container-fluid m-0 rounded-bottom bg-secondary-subtle d-flex justify-content-end">
             <button type="submit" className="btn btn-success my-3 ">
-              Registrar
+              Actualizar datos de Perfil
             </button>
           </div>
         </form>

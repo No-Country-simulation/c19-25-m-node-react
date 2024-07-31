@@ -149,8 +149,8 @@ color: black;
 }
 
 .scroll-to-top-button {
-  background-color: #e8e8e8;
-  color: #09055C;
+  background-color: #09055C;
+  color: #fff;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -164,7 +164,9 @@ color: black;
   opacity: 1;
 }
 
-
+.cursor-pointer {
+  cursor: pointer;
+}
 
 
 
