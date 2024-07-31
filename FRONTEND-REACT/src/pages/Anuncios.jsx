@@ -56,7 +56,7 @@ const Anuncios = () => {
       setShowModal(true);
     } else if (!context.dataUsuario.cuidador) {
       setModalContent({
-        title: "Ups, parece que nos falta un paso",
+        title: "Ups, parece que nos falta un paso:",
         message:
           "No te tenemos registrado como paseador/-a o cuidador/-a. Necesitamos hacerte unas preguntas antes de poder crear un anuncio.",
         redirect: "/form-registro",
