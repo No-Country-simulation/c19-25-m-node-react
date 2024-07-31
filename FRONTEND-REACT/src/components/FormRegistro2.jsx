@@ -66,13 +66,13 @@ const FormRegistro2 = () => {
   ]);
 
   const [mostrarModalEnvio, setMostrarModalEnvio] = useState(false);
-  const [modalConfirmar, setModalConfirmar] = useState(false);
   const [errorForm2, setErrorForm2] = useState("");
+  const [loading, setLoading] = useState(false); // Estado para manejar el spinner
 
   const navigate = useNavigate();
 
   const returnToPerfil = () => {
-    navigate("/perfil", { state: { scrollToTop: true } });
+    navigate("/perfil");
   };
 
   const handleSwitchChange = (index) => (event) => {
@@ -85,9 +85,11 @@ const FormRegistro2 = () => {
     setMostrarModalEnvio(true);
   };
 
-  const handleConfirmar = () => {
-    setModalConfirmar(true);
-    saveToDatabase();
+  const handleConfirmar = async () => {
+    setMostrarModalEnvio(false);
+    setLoading(true); // Mostrar el spinner antes de la solicitud
+    await saveToDatabase();
+    setLoading(false); // Ocultar el spinner después de la solicitud
   };
 
   const [showCongratulations, setShowCongratulations] = useState(false);
@@ -114,29 +116,26 @@ const FormRegistro2 = () => {
     );
 
     if (allYes) {
-      if (modalConfirmar) {
-        try {
-          const userId = context.dataUsuario._id;
+      try {
+        const userId = context.dataUsuario._id;
 
-          const response = await axios.put(
-            `${backendUrl}/usuario/cuidador/${userId}`,
-            { cuidador: true },
-            {
-              withCredentials: true,
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+        const response = await axios.put(
+          `${backendUrl}/usuario/cuidador/${userId}`,
+          { cuidador: true },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-          console.log("Datos enviados correctamente", response.data);
-          context.setDataUsuario(response.data.usuario);
-          setMostrarModalEnvio(false);
-          setShowCongratulations(true);
-        } catch (error) {
-          setErrorForm2(error.message);
-          console.error("Error al enviar los datos:", error);
-        }
+        console.log("Datos enviados correctamente", response.data);
+        context.setDataUsuario(response.data.usuario);
+        setShowCongratulations(true);
+      } catch (error) {
+        setErrorForm2(error.message);
+        console.error("Error al enviar los datos:", error);
       }
     } else {
       alert('Por favor, responde todas las preguntas con "Sí" para enviar.');
@@ -206,7 +205,7 @@ const FormRegistro2 = () => {
         <ModalComponent
           classNameModal="modal fade"
           idModal="modalConfirmacionEnvioForm2"
-          tittleModal="¿Seguro que has leido todo bien?"
+          tittleModal="¿Seguro que has leído todo bien?"
           bodyModal="El envío de este registro puede acarrear futuras consecuencias legales. Te rogamos que leas bien todas las preguntas."
           classNameBotonCerrar="btn btn-outline-danger"
           botonCerrar="Cerrar"
@@ -231,6 +230,20 @@ const FormRegistro2 = () => {
             <button className="btn bg-azul mt-3" onClick={handleContinue}>
               Continuar
             </button>
+          </div>
+        </div>
+      )}
+
+      {loading && (
+        <div className="modal show" style={{ display: "block" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body d-flex justify-content-center align-items-center">
+                <div className="spinner-border text-success" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
