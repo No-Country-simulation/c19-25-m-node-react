@@ -117,7 +117,7 @@ export default function Buscador() {
   return (
     <div>
       <BookingSearch />
-      <div className="container mt-4">
+      <div className="container mt-4 mb-5">
         <div className="row row-cols-1 row-cols-lg-3 g-4">
           {anunciosMock.map((anuncio) => (
             <CardAnuncio key={anuncio.id} anuncio={anuncio} />
