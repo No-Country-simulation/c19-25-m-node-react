@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import CrearAnuncio from "../components/CrearAnuncio";
-import CardAnuncio from "../components/CardAnuncio";
+import CardAnuncioVistaPrevia from "../components/CardAnuncioVistaPrevia";
 import { TokenContext } from "../components/Providers/TokenContext";
 import { useNavigate } from "react-router-dom";
 import ModalComponent from "../components/ModalComponent";
@@ -86,7 +86,7 @@ const Anuncios = () => {
             />
           </div>
           <div className="col-12 col-lg-6 mt-5 my-lg-auto">
-            <CardAnuncio anuncio={anuncio} />
+            <CardAnuncioVistaPrevia anuncio={anuncio} />
           </div>
         </div>
       </div>
