@@ -13,7 +13,7 @@ Nuestro objetivo es facilitar la contratación de cuidadores y paseadores de mas
 - **DISEÑO UX/UI**: Figma, Imgur  
 - **FRONTEND**: HTML, CSS y REACT  
 - **BACKEND**: NodeJS, Express, MongoDB  
-- **QA**: Postman  
+- **QA**: PostMan  
 
 ### DESEABLES PARA FUTURAS ACTUALIZACIONES:  
 - API para microseguros y criptomonedas.  
