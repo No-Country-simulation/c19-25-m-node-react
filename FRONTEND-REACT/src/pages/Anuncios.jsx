@@ -30,12 +30,6 @@ const Anuncios = () => {
     distanciaMaxima: "",
     fechaInicio: "",
     fechaFin: "",
-    direccion: context.dataUsuario?.localidad || "", // Coger de la base de datos
-    nombre: context.dataUsuario?.nombre || "", // Coger de la base de datos
-    apellido: context.dataUsuario?.apellido || "", // Coger de la base de datos
-    usuarioId: context.dataUsuario?.id || "",
-    imgperfil: context.dataUsuario?.imgperfil || "",
-    cuidador: context.dataUsuario?.cuidador || false,
   });
 
   const [showModal, setShowModal] = useState(false);
