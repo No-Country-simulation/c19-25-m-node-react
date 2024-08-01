@@ -200,12 +200,10 @@ export default function BookingSearch() {
       </div>
 
       <div className={`container col-10 col-lg-4`}>
-        {searchResults.length > 0 ? (
+        {searchResults.length > 0 && (
           searchResults.map((anuncio) => (
             <CardAnuncio key={anuncio.id} anuncio={anuncio} />
           ))
-        ) : (
-          <p>No se encontraron resultados</p>
         )}
       </div>
     </div>
