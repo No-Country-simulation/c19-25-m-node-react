@@ -128,7 +128,7 @@ const RegisterForm = () => {
 
           <div className="form-group m-3">
             <label htmlFor="imgPerfil" className="form-label">
-              Imagen de Perfil
+              Selecciona un avatar:
             </label>
             <div className="d-flex justify-content-between align-items-center">
               {[
