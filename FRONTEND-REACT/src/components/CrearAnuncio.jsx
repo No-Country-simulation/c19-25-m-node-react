@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import ModalComponent from './ModalComponent';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import ModalComponent from "./ModalComponent";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-
 const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
   const [mostrarModalEnvio, setMostrarModalEnvio] = useState(false);
-  const [error, setError] = useState('');
-  const [formError, setFormError] = useState('');
+  const [error, setError] = useState("");
+  const [formError, setFormError] = useState("");
   const [minStartDate, setMinStartDate] = useState(getCurrentDateTime());
   const navigate = useNavigate();
 
@@ -28,18 +27,18 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
   }, []);
 
   const returnToHome = () => {
-    navigate('/home');
+    navigate("/home");
   };
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-    if (id === 'fechaInicio') {
+    if (id === "fechaInicio") {
       // Ensure the selected start date is not in the past
       if (value < minStartDate) {
-        setFormError('La fecha de inicio no puede ser en el pasado.');
+        setFormError("La fecha de inicio no puede ser en el pasado.");
         return;
       }
-      setFormError('');
+      setFormError("");
     }
     onAnuncioChange({ [id]: value });
   };
@@ -49,8 +48,8 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     onAnuncioChange({
       selectedPets: {
         ...anuncio.selectedPets,
-        [id]: checked
-      }
+        [id]: checked,
+      },
     });
   };
 
@@ -59,8 +58,8 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     onAnuncioChange({
       selectedRols: {
         ...anuncio.selectedRols,
-        [id]: checked
-      }
+        [id]: checked,
+      },
     });
   };
 
@@ -69,46 +68,57 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
     onAnuncioChange({
       serviceOptions: {
         ...anuncio.serviceOptions,
-        [id]: checked
-      }
+        [id]: checked,
+      },
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const atLeastOnePetSelected = Object.values(anuncio.selectedPets).some((isSelected) => isSelected);
-    const atLeastOneServiceSelected = Object.values(anuncio.serviceOptions).some((isSelected) => isSelected);
-    const atLeastOneRolSelected = Object.values(anuncio.selectedRols).some((isSelected) => isSelected);
+    const atLeastOnePetSelected = Object.values(anuncio.selectedPets).some(
+      (isSelected) => isSelected
+    );
+    const atLeastOneServiceSelected = Object.values(
+      anuncio.serviceOptions
+    ).some((isSelected) => isSelected);
+    const atLeastOneRolSelected = Object.values(anuncio.selectedRols).some(
+      (isSelected) => isSelected
+    );
 
     if (!atLeastOnePetSelected) {
-      setFormError('Por favor, selecciona al menos un tipo de mascota que estás dispuesto a cuidar.');
+      setFormError(
+        "Por favor, selecciona al menos un tipo de mascota que estás dispuesto a cuidar."
+      );
     } else if (!atLeastOneServiceSelected) {
-      setFormError('Por favor, selecciona al menos una opción de servicio.');
+      setFormError("Por favor, selecciona al menos una opción de servicio.");
     } else if (anuncio.fechaInicio < minStartDate) {
-      setFormError('La fecha de inicio no puede ser en el pasado.');
+      setFormError("La fecha de inicio no puede ser en el pasado.");
     } else if (anuncio.fechaFin <= anuncio.fechaInicio) {
-      setFormError('La fecha de fin debe ser posterior a la fecha de inicio.');
+      setFormError("La fecha de fin debe ser posterior a la fecha de inicio.");
     } else if (!atLeastOneRolSelected) {
-      setFormError('Debe seleccionar un rol.');
-    }
-    else {
-      setFormError('');
+      setFormError("Debe seleccionar un rol.");
+    } else {
+      setFormError("");
       setMostrarModalEnvio(true);
     }
   };
 
   const handleConfirmar = async () => {
     try {
-      // Comprobar que campo cuidador es true
-      // if (campoCuidador) {
-      const response = await axios.post(`${backendUrl}/usuario/crearanuncio`, anuncio);
-      console.log('Datos enviados correctamente', response.data);
+      const response = await axios.post(
+        `${backendUrl}/usuario/crearanuncio`,
+        anuncio,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log("Datos enviados correctamente", response.data);
       returnToHome();
-      // }
-      // else {MOSTRAR MODAL CON REDIRECCIÓN A FORMREGISTRO2}
+      
     } catch (error) {
       setError(error.message);
-      console.error('Error al enviar los datos:', error);
+      console.error("Error al enviar los datos:", error);
     }
   };
 
@@ -119,14 +129,25 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
           <h5 className="card-title">Crea aquí tu Anuncio:</h5>
           <form className="form" onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="titulo" className="form-label">Título del Anuncio</label>
-              <input type="text" className="form-control" id="titulo" value={anuncio.titulo} onChange={handleInputChange} required />
+              <label htmlFor="titulo" className="form-label">
+                Título del Anuncio
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="titulo"
+                value={anuncio.titulo}
+                onChange={handleInputChange}
+                required
+              />
             </div>
 
             <div>
-              <label htmlFor="tipoMascota" className="form-label">Tipo de mascota que estás dispuesto a cuidar:</label>
+              <label htmlFor="tipoMascota" className="form-label">
+                Tipo de mascota que estás dispuesto a cuidar:
+              </label>
               <div id="tipoMascota">
-                {['Perros', 'Gatos', 'Pajaros', 'Peces'].map((pet) => (
+                {["Perros", "Gatos", "Pajaros", "Peces"].map((pet) => (
                   <div className="form-check form-check-inline" key={pet}>
                     <input
                       className="form-check-input"
@@ -136,35 +157,50 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
                       checked={anuncio.selectedPets[pet]}
                       onChange={handleCheckboxPetChange}
                     />
-                    <label className="form-check-label" htmlFor={pet}>{pet}</label>
-                  </div>
-                ))}
-              </div>
-            </div>
-        
-            <div className="mt-3">
-              <label htmlFor="serviceOptions" className="form-label">Opciones de servicio:</label>
-              <div id="serviceOptions">
-                {['Voy a su domicilio', 'Solo en mi domicilio'].map((option) => (
-                  <div className="form-check form-check-inline" key={option}>
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id={option.replace(/\s+/g, '')}
-                      value={option}
-                      checked={anuncio.serviceOptions[option.replace(/\s+/g, '')]}
-                      onChange={handleServiceOptionChange}
-                    />
-                    <label className="form-check-label" htmlFor={option.replace(/\s+/g, '')}>{option}</label>
+                    <label className="form-check-label" htmlFor={pet}>
+                      {pet}
+                    </label>
                   </div>
                 ))}
               </div>
             </div>
 
+            <div className="mt-3">
+              <label htmlFor="serviceOptions" className="form-label">
+                Opciones de servicio:
+              </label>
+              <div id="serviceOptions">
+                {["Voy a su domicilio", "Solo en mi domicilio"].map(
+                  (option) => (
+                    <div className="form-check form-check-inline" key={option}>
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id={option.replace(/\s+/g, "")}
+                        value={option}
+                        checked={
+                          anuncio.serviceOptions[option.replace(/\s+/g, "")]
+                        }
+                        onChange={handleServiceOptionChange}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor={option.replace(/\s+/g, "")}
+                      >
+                        {option}
+                      </label>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="selectedRols" className="form-label">Rol que quieres ocupar:</label>
+              <label htmlFor="selectedRols" className="form-label">
+                Rol que quieres ocupar:
+              </label>
               <div id="selectedRols">
-                {['Paseador', 'Cuidador'].map((rol) => (
+                {["Paseador", "Cuidador"].map((rol) => (
                   <div className="form-check form-check-inline" key={rol}>
                     <input
                       className="form-check-input"
@@ -174,29 +210,60 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
                       checked={anuncio.selectedRols[rol]}
                       onChange={handleCheckboxRolChange}
                     />
-                    <label className="form-check-label" htmlFor={rol}>{rol}</label>
+                    <label className="form-check-label" htmlFor={rol}>
+                      {rol}
+                    </label>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="mb-3">
-              <label htmlFor="descripcion" className="form-label">Observaciones del Anuncio</label>
-              <textarea className="form-control" id="descripcion" rows="3" value={anuncio.observaciones} onChange={handleInputChange} required></textarea>
+              <label htmlFor="descripcion" className="form-label">
+                Observaciones del Anuncio
+              </label>
+              <textarea
+                className="form-control"
+                id="descripcion"
+                rows="3"
+                value={anuncio.observaciones}
+                onChange={handleInputChange}
+                required
+              ></textarea>
             </div>
 
             <div className="mb-3">
-              <label htmlFor="precio" className="form-label">Precio por hora</label>
-              <input type="number" className="form-control" id="precio" value={anuncio.precioHora} onChange={handleInputChange} required />
+              <label htmlFor="precio" className="form-label">
+                Precio por hora
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="precio"
+                value={anuncio.precioHora}
+                onChange={handleInputChange}
+                required
+              />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="distanciaMaxima" className="form-label">¿Cuánto estás dispuesto a alejarte de tu dirección en km?</label>
-              <input type="number" className="form-control" id="distanciaMaxima" value={anuncio.distanciaMaxima} onChange={handleInputChange} required />
+              <label htmlFor="distanciaMaxima" className="form-label">
+                ¿Cuánto estás dispuesto a alejarte de tu dirección en km?
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="distanciaMaxima"
+                value={anuncio.distanciaMaxima}
+                onChange={handleInputChange}
+                required
+              />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="fechaInicio" className="form-label">Fecha y hora de inicio del servicio</label>
+              <label htmlFor="fechaInicio" className="form-label">
+                Fecha y hora de inicio del servicio
+              </label>
               <input
                 type="datetime-local"
                 className="form-control"
@@ -209,7 +276,9 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="fechaFin" className="form-label">Fecha y hora de fin del servicio</label>
+              <label htmlFor="fechaFin" className="form-label">
+                Fecha y hora de fin del servicio
+              </label>
               <input
                 type="datetime-local"
                 className="form-control"
@@ -221,7 +290,9 @@ const CrearAnuncio = ({ anuncio, onAnuncioChange }) => {
               />
             </div>
 
-            <button type="submit" className="btn btn-outline-success">Crear Anuncio</button>
+            <button type="submit" className="btn btn-outline-success">
+              Crear Anuncio
+            </button>
           </form>
         </div>
       </div>
