@@ -4,7 +4,7 @@
 
 ### ENLACES:  
 - **FIGMA**: [https://www.figma.com/design/8QSznuzXRh9wzYoGMO0YvG/PROYECTO-NO-COUNTRY?node-id=0-1&t=dyXvWy7OT5ZsGLPF-1](https://www.figma.com/design/8QSznuzXRh9wzYoGMO0YvG/PROYECTO-NO-COUNTRY?node-id=0-1&t=dyXvWy7OT5ZsGLPF-1)  
-- **DEPLOY**: [https://yolocuido.vercel.app/](https://yolocuido.vercel.app/))  
+- **DEPLOY**: [https://yolocuido.vercel.app/](https://yolocuido.vercel.app/)  
 
 YO LO CUIDO es una plataforma responsive innovadora dedicada a la contratación de servicios de paseo y hospedaje para mascotas. A través de un enfoque centrado en la confianza, la calidez y la profesionalidad, ofrecemos una experiencia única en el mercado, caracterizada por una amplia variedad de funcionalidades diseñadas para satisfacer las necesidades de nuestros usuarios. Proponemos una plataforma donde los cuidadores y paseadores puedan ofrecer sus servicios de manera accesible. Todos están invitados a participar: dueños de mascotas, cuidadores, paseadores, aseguradoras e inversionistas que busquen capitalizarse en el área. Nuestra plataforma permite publicar servicios, evaluar y recompensar a los cuidadores y paseadores destacados, una alternativa de medio de pago como el uso de tokens, además de cobertura y asistencia durante la contratación del servicio.  
 
